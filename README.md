@@ -1,12 +1,14 @@
-1. Check if a Number Is a Prime
+
+**PRIME_NUMBERS**
+1. **Check if a Number Is a Prime**
 What is prime Number? 
-Prime Number can be divisible by 1 and number itself. ie_ the divisor count would be 2.
-Ex: 5, 7, 3 (prime numbers) and 2,9,10 -> Non prime number
+	Prime Number can be divisible by 1 and number itself. ie_ the divisor count would be 2.
+	Ex: 5, 7, 3 (prime numbers) and 2,9,10 -> Non prime number
+	
+	Input -> 7 o/p -> '7 is prime number'
+	Input -> 9 o/p -> '9 is not prime number'
 
-Input -> 7 o/p -> '7 is prime number'
-Input -> 9 o/p -> '9 is not prime number'
-
-*Intitution
+Intitution
 - 1 and number itself is prime number
 - Loop to 2 to number -1 -> check prime number and return 'Not Prime Number'
 - How to check if it prime number => num % i == 0 
@@ -34,7 +36,8 @@ Input -> 9 o/p -> '9 is not prime number'
 	     ex: i = 6
 	     check num % 6 == 0
 	      Also check num/6(we will get 6) here both i and num/i is 6 then no need to check
-1. Algorithm to check if prime number or not for given num
+  
+**a. Algorithm to check if prime number or not for given num**
 
    - Intialiize flag = ture
    - Base case
@@ -52,7 +55,7 @@ Input -> 9 o/p -> '9 is not prime number'
         - Else
            - Then Return 'Not Prime Number'
 
-2. Algorithm to display the prime numbers within given n
+b. **Algorithm to display the prime numbers within given n**
   ex: 9 -> The prime numbers ae 3,5,7
   -  Intialiize prime_numbers = []
   - Base case
@@ -65,7 +68,7 @@ Input -> 9 o/p -> '9 is not prime number'
     - Push num to prime number if only Flag = true
   - Finally display the prime numbers list
 
-3. Algorithm to find the next prime number of given num
+c. **Algorithm to find the next prime number of given num**
 
    ex: 7 -> o/p(11), ex: 5 -> o/p(7)
 
@@ -79,4 +82,5 @@ Input -> 9 o/p -> '9 is not prime number'
        - Then Return next_num
      - Else
         - next_num = next_num + 1
+
 
