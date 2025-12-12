@@ -127,24 +127,44 @@
           if n = 1 then return n
        - Return n * Factorial(n-1)
 **4. PALINDRONE NUMBER**
-        What is PALINDRONE?
-        A palindrome is something that remains the same when reversed.
-        Ex: 121 -> Reverse string 121 -> actial and reverse string are same. so it is palindrone.
-        Write a method that returns true if a number is a palindrome.
+    What is PALINDRONE?
+    A palindrome is something that remains the same when reversed.
+    Ex: 121 -> Reverse string 121 -> actial and reverse string are same. so it is palindrone.
+    Write a method that returns true if a number is a palindrome.
 
-        Intutuon
-          - Find the last digit and multiply by 10 with last digin to get the revesed numner. remove the last digit and assign to numm
-        - Algorithm:
-           - [OPTIONAL] Convert to given number string to integer with num if the given n is string.
-           - Store the given num to actual_num
-           - Set Revesed_num  = 0
-           - Loop till num > 0
-              - Find the last digit with mod
-              - Find the reverse dighti , need to multiply with reverse digit and add the last digit
-              - Divide the num with 10 and set num with the value
-           - Fianlly check the reverse str is matches with actual string
+    Intutuon
+      - Find the last digit and multiply by 10 with last digin to get the revesed numner. remove the last digit and assign to numm
+    - Algorithm:
+       - [OPTIONAL] Convert to given number string to integer with num if the given n is string.
+       - Store the given num to actual_num
+       - Set Revesed_num  = 0
+       - Loop till num > 0
+          - Find the last digit with mod
+          - Find the reverse dighti , need to multiply with reverse digit and add the last digit
+          - Divide the num with 10 and set num with the value
+       - Fianlly check the reverse str is matches with actual string
 
-        - Built-in methid
-           - Compare actual_num with Revesed_num
+    - Built-in methid
+       - Compare actual_num with Revesed_num
 
+** ARMSTRONG NUMBER**
+    What is armstrong number?
+    An Amrstrong number is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
+    ex:  153 -> (1*1) + (5*5) + (3*3) -> 1 + 25 + 9 => 153
+    Hence it is armstrong number
+
+    Intutuon
+      - Loop it and find the square root  of number length  and sum it and copmare with actual number
+      - Algorithm:(using recursion) 
+        - Back up the given num to actual num
+        - Set sum with 0
+        - Loop till num > 0
+          - Find the last digit using mod
+          - Find the power with length using **
+          - Add sum with power
+          - Assign num/10 to num
+        - Fianlly Return sum is equal to actual num it is armstorng numer
+
+    - Built-in methid
+       - Using reduce
 
