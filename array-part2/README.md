@@ -59,7 +59,7 @@ Given an array nums consisting of only 0, 1, or 2. Sort the array in non-decreas
 	Explanation: The nums array in sorted order has 2 zeroes, 3 ones and zero twos.
 
 
-  BETTER APPROACH => Algorithm 1:(USING Counters)
+  BETTER APPROACH => Algorithm 1:(USING DUTCH N ATIONAL ALGORITHM)
 
 	  - Intution:
 	    Since the array contains only 0s, 1s, and 2s, we can exploit this limited range of values to count how many of each element exists. Once we know how many 0s, 1s, and 2s are in the array, we can simply overwrite the original array by placing that many 0s, then 1s, and then 2s in order. This approach avoids sorting and gives a linear-time, constant-space solution.
@@ -108,7 +108,7 @@ Given an array nums consisting of only 0, 1, or 2. Sort the array in non-decreas
 	Explanation:
 	 The number 7 appears 5 times in the 9-sized array, making it the most frequent element.
 
-   - Algorithm(Using Counter )
+   - OPTIMAL APPROACH =>  Algorithm(BOYER–MOORE MAJORITY VOTE ALGORITHM)
 
 
 	- Intitution:
@@ -124,3 +124,66 @@ Given an array nums consisting of only 0, 1, or 2. Sort the array in non-decreas
 	    - Fianlly return current_element
 	    Time Complexity: O(N), where N is the size of the input array. This is because we are iterating through the array once to find the potential majority element and then again to verify it.
         Space Complexity: O(1), as we are using only a constant amount of extra space.
+
+
+**Kadane's Algorithm : Maximum Subarray Sum in an Array**
+
+  Problem Statement: 
+  -----------------
+
+   Given an integer array nums, find the subarray with the largest sum and return the sum of the elements present in that subarray.A subarray is a contiguous non-empty sequence of elements within an array.
+	Example 1:
+
+	INPUT:
+	 nums = [-2, -3, -7, -2, -10, -4]  
+	OUTPUT:
+	 15  
+	Explanation:
+	 The subarray from index 0 to index 4 has the largest sum = 15, which is the maximum sum of any contiguous subarray.
+
+
+  OPTIMAL APPROACH =>  Algorithm(Kadane's Algorithm)
+
+	 Intition 
+	   Add the sum of each element. if it is greater than max then update max if sum is less than 0 then update sum = 0. ie) if we have negative numer, when you add up each element wil leads to negative number.
+	     - Intialize max = -Infinity and sum  = 0
+	     - Loop to 0 to ary.size wtith ele
+	       - Add sum with ele
+	       - If sum is greater than max
+	         - Update the max with sum
+	       - If sum is greater than 0
+	          - Update sum to 0
+	       Time Complexity: O(n), where n is the number of elements in the array. We traverse the array only once.
+	       Space Complexity: O(1). We use a constant amount of space for variables.
+	FOLLOW_UP -> If you want to display the subarray index
+	 - used Kadane’s algorithm and tracked start and end indices by resetting the start whenever the running sum became negative
+
+**Stock Buy And Sell**
+
+
+  Problem Statement: 
+  -----------------
+
+    You are given an array of prices where prices[i] is the price of a given stock on an ith day. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+    INPUT: prices = [7,1,5,3,6,4]
+	OUTPUT: 5
+	Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+	Note: That buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+
+	INPUT: prices = [7,6,4,3,1]
+	OUTPUT: 0
+	Explanation: In this case, no transactions are done and the max profit = 0.
+
+	OPTIMAL APPROACH =>  Algorithm(Min and max)
+
+	 Intution:
+	   The idea is to track the minimum price so far while traversing the array and calculate the profit if we sold today. This way, we can constantly update the maximum profit without using nested loops. We’re basically simulating
+	    - Initialize a variable min = Infinity , cost = first value of ary and max_profit = 0
+	    - Loop to 0 to prices wih index
+	      - Find the cost by prices[index] - min
+	      - Find the max of cost by comparing cost , with actual max
+	      - Update the min with current_element
+	      Time Complexity: O(n),This is because we are iterating through the array of prices exactly once. There are no nested loops or recursive calls.
+	      Space Complexity: O(1),Only two variables are used to store the minimum price and maximum profit, regardless of the input size. 
+
+
