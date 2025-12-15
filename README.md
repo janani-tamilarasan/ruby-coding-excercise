@@ -17,11 +17,17 @@
 
 **HASHING**
    ✔ Frequency / count
+   
    ✔ Duplicates / unique
+   
    ✔ Seen before?
+   
    ✔ Fast lookup
+   
    ✔ Order doesn’t matter
+   
    ✔ Unsorted array
+   
 
 **SLIDING WINDOW**
 
