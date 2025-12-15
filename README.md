@@ -68,6 +68,33 @@ Types of Sliding Window
        
        ✔  flip k zeros
        
+** Dutch National algorithm **
+
+      ✔ Array contains ONLY 3 distinct values
+      
+      ✔ Values are usually 0, 1, 2 (or can be mapped to them)
+      
+      ✔ Sorting must be IN-PLACE
+      
+      ✔ Single pass / O(n) required
+      
+      ✔ No extra space allowed
+
+📌 Most common problem:
+
+      Sort Colors / Sort 0s, 1s, and 2s
+      Three Pointers (Always the Same)
+         low  → where 0 should go
+         mid  → current element
+         high → where 2 should go
+
+       | Value | Color   | Action     | Move            |
+   | ----- | ------- | ---------- | --------------- |
+   | `0`   | 🔴 Red  | Send LEFT  | `low++ , mid++` |
+   | `1`   | ⚪ White | Stay       | `mid++`         |
+   | `2`   | 🔵 Blue | Send RIGHT | `high--`        |
+
+   NOTE: No mid++ for two
 
 **NOTE (IMPROVEMENT)**
 
