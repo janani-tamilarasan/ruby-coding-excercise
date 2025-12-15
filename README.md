@@ -98,7 +98,6 @@
    if 1 → mid++
    if 2 → swap mid & high → high--
 
-
 ---
 
 ## 🗳️ BOYER–MOORE MAJORITY VOTE ALGORITHM
@@ -153,7 +152,40 @@
 ⏱ **Time Complexity:** O(n)  
 📦 **Space Complexity:** O(1)
 
-## 📝 NOTE (IMPROVEMENT)
+---
+
+## 🔁 KADANE's ALGORITHM (MAXIMUM SUBARRAY SUM)
+DROP NEGATIVE, KEEP POSITIVE
+
+### ✅ When to Use
+
+ - ✔ You are asked for maximum (or minimum) subarray sum
+ - ✔ Subarray must be continuous
+ - ✔ Need O(n) solution
+ - ✔ No fixed window size
+
+📌 **Keywords**
+- ✔ maximum subarray
+- ✔ largest sum contiguous subarray
+- ✔ maximum sum
+- ✔ continuous elements
+
+sum += element
+max_sum = sum if(sum > max_sum)
+
+if sum < 0
+  sum = 0
+Return max_sum
+
+⏱ **Time & Space Complexity**
+Time	O(n)
+Space	O(1)
+
+---
+
+### 📝 NOTE (IMPROVEMENT)
 
 - Use default hash for frequency problems:
-Hash.new(0)
+# Hash.new(0)
+- if you want to assign infinity you use
+ # max_sum = -Float::INFINITY
