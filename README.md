@@ -88,10 +88,13 @@ Types of Sliding Window
          mid  → current element
          high → where 2 should go
 
-       | Value | Color   | Action     | Move            |
+       | Value | Color   | Action     | Move       |
    | ----- | ------- | ---------- | --------------- |
+   
    | `0`   | 🔴 Red  | Send LEFT  | `low++ , mid++` |
+   
    | `1`   | ⚪ White | Stay       | `mid++`         |
+   
    | `2`   | 🔵 Blue | Send RIGHT | `high--`        |
 
    NOTE: No mid++ for two
