@@ -1,104 +1,159 @@
-**CHEATSHEET**
+# 📌 CHEATSHEET
 
-**TWO POINTERS**
+---
 
-   ✔ Sorted array
-   
-   ✔ Pairs / triplets
-   
-   ✔ Target sum
-   
-   ✔ Left + Right comparison
-   
-   ✔ In-place modification
-   
-   ✔ Opposite ends approach
-   
+## 🔁 TWO POINTERS
 
-**HASHING**
-   ✔ Frequency / count
-   
-   ✔ Duplicates / unique
-   
-   ✔ Seen before?
-   
-   ✔ Fast lookup
-   
-   ✔ Order doesn’t matter
-   
-   ✔ Unsorted array
-   
+### ✅ When to Use
+- ✔ Sorted array
+- ✔ Pairs / triplets
+- ✔ Target sum
+- ✔ Left + Right comparison
+- ✔ In-place modification
+- ✔ Opposite ends approach
 
-**SLIDING WINDOW**
+---
 
-Use Sliding Window if you see:
+## 🧮 HASHING
 
-   ✔ Subarray / Substring / Continuous
-   
-   ✔ Longest / Shortest / Max / Min / Count
-   
-   ✔ At most / At least / Exactly / Without
-   
-   ✔ Constraint that can break and be fixed
-   
-   
-   ❌ Do NOT use if it’s not continuous
-   
-Types of Sliding Window
+### ✅ When to Use
+- ✔ Frequency / count
+- ✔ Duplicates / unique
+- ✔ Seen before?
+- ✔ Fast lookup
+- ✔ Order doesn’t matter
+- ✔ Unsorted array
 
-   **1. Fixed Size Window(Window size = K)**
+---
+
+## 🪟 SLIDING WINDOW
+
+### ✅ Use Sliding Window if You See
+- ✔ Subarray / Substring / Continuous
+- ✔ Longest / Shortest / Max / Min / Count
+- ✔ At most / At least / Exactly / Without
+- ✔ Constraint that can break and be fixed
+
+❌ **Do NOT use if the problem is not continuous**
+
+---
+
+### 🔹 Types of Sliding Window
+
+#### 1️⃣ Fixed Size Window (Window size = `K`)
+📌 **Keywords**
+- ✔ “subarray of size k”
+- ✔ “window length k”
+
+---
+
+#### 2️⃣ Variable Size Window (Dynamic window)
+📌 **Keywords**
+- ✔ at most
+- ✔ at least
+- ✔ k distinct
+- ✔ no repeating
+- ✔ flip k zeros
+
+---
+
+## 🇳🇱 DUTCH NATIONAL FLAG ALGORITHM
+
+### ✅ When to Use
+- ✔ Array contains ONLY **3 distinct values**
+- ✔ Values are usually **0, 1, 2** (or can be mapped)
+- ✔ Sorting must be **IN-PLACE**
+- ✔ **Single pass / O(n)**
+- ✔ **No extra space**
+
+📌 **Most Common Problem**
+- Sort Colors / Sort 0s, 1s, and 2s
+
+---
+
+### 🔁 Three Pointers (Always the Same)
+
+- `low`  → where `0` should go  
+- `mid`  → current element  
+- `high` → where `2` should go  
+
+---
+
+### 🚦 Action Table
+
+| Value | Color | Action | Pointer Move |
+|------|------|------|-------------|
+| `0` | 🔴 Red | Send LEFT | `low++ , mid++` |
+| `1` | ⚪ White | Stay | `mid++` |
+| `2` | 🔵 Blue | Send RIGHT | `high--` |
+
+❗ **NOTE:** No `mid++` for `2`
+
+---
+
+### 🧩 Pseudocode
+
+ - while mid <= high
+   if 0 → swap low & mid → low++, mid++
+   if 1 → mid++
+   if 2 → swap mid & high → high--
+
+
+---
+
+## 🗳️ BOYER–MOORE MAJORITY VOTE ALGORITHM
+
+### ✅ When to Use
+- ✔ Find a majority element
+- ✔ Appears more than ⌊n/2⌋ times
+- ✔ Majority element is guaranteed
+- ✔ O(1) extra space required
+
+---
+
+### 🔑 Keywords
+- majority element
+- appears more than n/2 times
+- most frequent (with guarantee)
+- dominant element
+- single element survives
+
+---
+
+### 🧠 Tips to Remember
+- Same element → **+1 vote**
+- Different element → **−1 vote**
+- Votes become `0` → change candidate
+
+---
+
+### 🧩 Pseudocode
+
+   count = 0
+   candidate = nil
    
-      Keywords
+   for each element
+   
+      if count == 0
       
-       ✔ “subarray of size k”
-       
-       ✔ “window length k”
-
-   **2. Variable Size Window(No fixed size k given and its dynamic)**
-   
-      Keywords
+         candidate = element
+         
+         count = 1
+         
+      else if element == candidate
       
-       ✔ at most
-       
-       ✔  at least
-       
-       ✔  k distinct
-       
-       ✔ no repeating
-       
-       ✔  flip k zeros
-       
-** Dutch National algorithm **
-
-      ✔ Array contains ONLY 3 distinct values
+         count++
+         
+      else
       
-      ✔ Values are usually 0, 1, 2 (or can be mapped to them)
-      
-      ✔ Sorting must be IN-PLACE
-      
-      ✔ Single pass / O(n) required
-      
-      ✔ No extra space allowed
+         count--
+         
+   return candidate
 
-📌 Most common problem:
+⏱ **Time Complexity:** O(n)  
+📦 **Space Complexity:** O(1)
 
-      Sort Colors / Sort 0s, 1s, and 2s
-      Three Pointers (Always the Same)
-         low  → where 0 should go
-         mid  → current element
-         high → where 2 should go
+## 📝 NOTE (IMPROVEMENT)
 
-       | Value | Color   | Action     | Move       |
-   | ----- | ------- | ---------- | --------------- |
-   
-   | `0`   | 🔴 Red  | Send LEFT  | `low++ , mid++` |
-   
-   | `1`   | ⚪ White | Stay       | `mid++`         |
-   
-   | `2`   | 🔵 Blue | Send RIGHT | `high--`        |
-
-   NOTE: No mid++ for two
-
-**NOTE (IMPROVEMENT)**
-
-1. Use Hash.new(0)
+- Use default hash for frequency problems:
+Hash.new(0)
