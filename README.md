@@ -183,6 +183,29 @@ Space	O(1)
 
 ---
 
+## NEXT PERMUTION:(Break → Swap → Reverse)
+ " Find the first dip from the right, fix it, then sort the tail.”
+
+ 
+### ✅ When to Use
+
+  - ✔ “next permutation”
+  - ✔ “lexicographically next”
+  - ✔ “next greater arrangement”
+  - ✔ permutations in dictionary order
+
+   * Find the breakpoint
+        - Scan from right to left and find the first index i such that:
+        arr[i] < arr[i + 1]
+        If no such index exists → array is in descending order.
+        reverse entire array and return.
+     * Find the next larger element (from right)
+	     From the right side, find the smallest element > arr[i] Swap it with arr[i].
+     * Reverse the right part
+        rom the right side, find the smallest element > arr[i]Swap it with arr[i].
+
+---
+
 ### 📝 NOTE (IMPROVEMENT)
 
 - Use default hash for frequency problems:
