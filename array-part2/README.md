@@ -186,4 +186,148 @@ Given an array nums consisting of only 0, 1, or 2. Sort the array in non-decreas
 	      Time Complexity: O(n),This is because we are iterating through the array of prices exactly once. There are no nested loops or recursive calls.
 	      Space Complexity: O(1),Only two variables are used to store the minimum price and maximum profit, regardless of the input size. 
 
+ --
 
+**Rearrange Array Elements by Sign**
+
+   Problem Statement: Vairant 1 (Equal number of positives and negatives)
+   ----------------------------
+
+   There’s an array ‘A’ of size ‘N’ with an equal number of positive and negative elements. Without altering the relative order of positive and negative elements, you must return an array of alternately positive and negative values.
+
+   INPUT: [3,1,-2,-5,2,-4]
+   OUTPUT: [3,-2,1,-5,2,-4]
+
+   Algorithm:
+
+	 Intution:
+	   By observing the output, we assume even index (0,2,4) holds a positive number and odd index(1,3,5) holds for negative number. Create a new array and maintain two variables posIndex= 0 negIndex= 1. Check each elemnt is odd then assign to new array and increase posIndex by 2. also ifis even then assign to new array and increase negIndex by 2
+	   - Intialize posIndex = 0 and negIndex = 1 and result  = []
+	   - Loop 0 to arr.size with el
+	     - If el is  positive
+	       - Assing result of posIndex with el
+	       - Increment posIndex by 2
+	    - Else(el is negative)
+	       - Assing result of negIndex with el
+	       - Increment negIndex by 2	  
+	    - Finally Return result
+	    Time Complexity: O(N) { O(N) for traversing the array once and substituting positives and negatives simultaneously using pointers, where N = size of the array A}.
+	    Space Complexity: O(N) { Extra Space used to store the rearranged elements separately in an array, where N = size of array A}  
+
+
+--
+
+**next_permutation : find next lexicographically greater permutation**
+
+	Problem Statement: 
+	------------------
+	Given an array Arr[] of integers, rearrange the numbers of the given array into the lexicographically next greater permutation of numbers.
+	If such an arrangement is not possible, it must rearrange to the lowest possible order (i.e., sorted in ascending order).
+    INPUT = 2154300
+    OUTPUT = 2300341
+
+	OPTIMAL APPROACH =>  Algorithm(Next Permutation)
+
+    Intution:
+    find the first decreasing element from the right, swap it with the next greater element on the right, and reverse the suffix to get the next permutation in O(n).
+      - Find the breakpoint
+        - Scan from right to left and find the first index i such that:
+        arr[i] < arr[i + 1]
+        If no such index exists → array is in descending order.
+        reverse entire array and return.
+      -  Find the next larger element (from right)
+	     From the right side, find the smallest element > arr[i] Swap it with arr[i].
+      - Reverse the right part
+        rom the right side, find the smallest element > arr[i]Swap it with arr[i].
+        Time Complexity: O(N), we find the breaking point and reverse the subarray in linear time.
+        Space Complexity: O(1), constant additional space is used.
+
+**Leaders in an Array**
+
+	Example 1:
+	INPUT: arr = [10, 22, 12, 3, 0, 6]    
+	OUTPUT: 6,12,22  
+	Explanation:
+	 The rightmost element (0) is always a leader.  
+	7 and 1 are greater than the elements to their right, making them leaders as well.
+     
+	OPTIMAL APPROACH =>  Algorithm(Using reverse travelsal)
+	Intution:
+	  Interate the reverse and update the max if current element is gretaerh than max
+	   - Intialize max = 0 and result = []
+	   - Loop ary.size to 0 with el
+	     - Compare el with max if greater than max
+	       - Update max
+	       - Push the result into el
+	   - Fianlly Return the result
+   
+
+**Longest Consecutive Sequence in an Array**
+
+Problem Statement: Given an array nums of n integers.
+
+Return the length of the longest sequence of consecutive integers. The integers in this sequence can appear in any order.
+INPUT: nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]  
+OUTPUT: 9  
+Explanation:
+ The longest sequence of consecutive elements in the array is [0, 1, 2, 3, 4, 5, 6, 7, 8], which has a length of 9.
+
+	 BETTER_APPROACH ->(using current Algorithm)
+	   Intution
+	     Sort the array and compare with currentCount having currentCount -1 if it is there increase the count or else reset count is 0 and update the currentElemet
+	     - sort the given array
+	     - Intialize lastSmaller = 0, maxLongest = 1 and count = 0
+	     - Each Loop arr with each do with el
+	       - if lastSmaller is equal to el - 1
+	           - Increment the count
+	           - Assign lastSmaller is equal to el
+	       - Else
+	           - Update maxLongest = [maxLongest,count].max()
+	           - Reset counter to 0
+	           Time Complexity: O(n log n), where n is the number of elements in the array. This is due to the sorting step, which is the most time-consuming operation in this approach.
+	           Space Complexity: O(1), as we are using only a constant amount of extra space.
+
+    OPTIMAL APPROACH ->(using HASH compare)
+     Intution
+       Store all values into the hash and check with each element with elemeent + 1 is present if it there increment the count or else find the maxLongest with count and reset to 0.
+        - Intialize  maxLongest = 1 and count = 0
+        - Store all the hash
+        - Loop 0 to ary.sze with el
+          - Check if el + 1 is present in hash
+            - If yes, Increment the count
+            - Else Find the max of maxLongest with count , count = 1
+        - Finally return maxLongest
+	        Time Complexity: O(n), where n is the number of elements in the array. This is because we traverse each element once to build the set and then again to find the longest consecutive sequence.
+	        Space Complexity: O(n), as we use a set to store the unique elements of the array, which in the worst case can be equal to the size of the input array.
+  
+**Count Subarray sum Equals K**
+
+Problem Statement: 
+Given an array of integers and an integer k, return the total number of subarrays whose sum equals k. A subarray is a contiguous non-empty sequence of elements within an array.
+EX:
+Input : N = 4, array[] = {3, 1, 2, 4}, k = 6
+Output: 2
+Explanation: The subarrays that sum up to 6 are [3, 1, 2] and [2, 4].
+
+Input: N = 3, array[] = {1,2,3}, k = 3
+Output: 2
+Explanation: The subarrays that sum up to 3 are [1, 2], and [3]
+
+### NOTE
+  | prefix_sum += ele        |
+  | remove = prefix_sum - k  |
+
+
+  Intitiation
+    - Adding the each element to prefix_sum , find remove using prefix_sum - k , check if remove is present in the hash,if its there get the value and add it count else store element into hash with value by deffault
+    NOT: Alwy store hash {0:1 }as default
+	Algorithm(Using prefixSum)
+	 - Intailize the prefix_sum = 0 , count = 0 
+	 - Intailizehash {0:1 }as default
+	 - Loop 0 to ary.size with ele
+	   - Add ele to prezix sum
+	   - Find remove using prefix_sum - k
+s	      - Get the values and add with count
+	   - Update the hash with prefix_sum
+	   Time Complexity: O(n) We traverse the array once, where n is the size of the array. Each prefix sum operation and hashmap lookup is O(1) on average.
+	   Space Complexity: O(n) In the worst case, all prefix sums are distinct and stored in the hashmap, so space grows linearly with input size. 
