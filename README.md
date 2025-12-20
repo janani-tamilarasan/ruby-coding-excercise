@@ -205,6 +205,53 @@ Space	O(1)
         rom the right side, find the smallest element > arr[i]Swap it with arr[i].
 
 ---
+## 🔁 PREFIX SUM 
+Prefix sum = cumulative sum up to an index
+**prefix[i] = a[0] + a[1] + ... + a[i]**
+ 
+### ✅ When to Use
+    - ✅ “subarray” (contiguous)
+	- ✅ “range sum”
+	- ✅ “sum equals K”
+	- ✅ “count number of subarrays”
+	- ✅ “find length of subarray”
+	- ✅ “continuous sequence”
+	- ✅ negative numbers present
+	- ✅ multiple sum queries
+
+### CORE IDEA (Most Important Line)
+	
+	For any subarray i → j:
+	
+### sum(i..j) = prefix[j] - prefix[i-1]
+
+If:
+
+### prefix[j] - prefix[i] = K
+
+Then:
+
+### prefix[i] = prefix[j] - K
+
+👉 Use a HashMap to store prefix frequencies.
+
+### Template
+def subarray_sum(nums, k)
+  count = 0
+  prefix_sum = 0
+  freq = Hash.new(0)
+
+  freq[0] = 1   # VERY IMPORTANT
+
+  nums.each do |num|
+    prefix_sum += num
+    count += freq[prefix_sum - k]
+    freq[prefix_sum] += 1
+  end
+
+  count
+end
+
 
 ### 📝 NOTE (IMPROVEMENT)
 
