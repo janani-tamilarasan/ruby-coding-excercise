@@ -252,6 +252,46 @@ def subarray_sum(nums, k)
   count
 end
 
+## 🔁 Binary search
+ ✅ 1. Search space is sorted
+ ✅ 2. Any range like range like 1..10^9
+ ✅ 3. Decision is monotonic ex: 
+ Can Koko finish eating at speed = mid?
+Can we ship packages in mid days?
+Can we allocate books with max pages = mid?
+
+✅ When to Use Binary Search
+ 1️⃣ Data is sorted
+  1️⃣ Answer space is numeric and ordered
+Condition is monotonic (MOST IMPORTANT)
+
+❌ When NOT to Use Binary Search
+
+❌ Unsorted data with no order
+❌ Condition is random (true/false jumps)
+❌ Need all results, not one
+❌ No monotonic behavior
+
+### Template
+low = minimum_possible
+high = maximum_possible
+ans = high
+
+while low <= high
+  mid = (low + high) / 2
+
+  if possible?(mid)
+    ans = mid
+    high = mid - 1 or  low = mid + 1
+  else
+    low = mid + 1 or low = mid + 1
+  end
+end
+
+ans
+
+
+ 
 
 ### 📝 NOTE (IMPROVEMENT)
 
