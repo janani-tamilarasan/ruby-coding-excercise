@@ -308,6 +308,24 @@ Are we partitioning an array?	low = max(arr)
 Must each element fit entirely?	low = max(arr)
 Is answer a speed / rate / divisor?	low = 1
 Is zero a valid solution?	low = 0
+1. Index-Based Binary Search (Classic)
+Am I searching an index?
+→ low = 0, high = n-1
+
+2. Answer-Based (Range) — Partition / Capacity Problems
+Am I minimizing a maximum (capacity/partition)?
+→ low = max(arr), high = sum(arr)
+
+3. Answer-Based — Rate / Speed Problems
+Am I finding a rate/speed?
+→ low = 1
+4. Maximize Minimum Distance (Aggressive Cows)
+Am I maximizing minimum distance?
+→ low = 1, high = max-min
+
+Is zero allowed?
+→ maybe low = 0
+
 Capacity problems → max(arr)
 Speed problems    → 1
 
