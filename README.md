@@ -289,9 +289,27 @@ while low <= high
 end
 
 ans
+### Template (Using range)
 
+<img width="484" height="338" alt="image" src="https://github.com/user-attachments/assets/2fb1a646-c8d8-4e37-bae3-f669370eaf9d" />
+<img width="428" height="267" alt="image" src="https://github.com/user-attachments/assets/56627df0-8662-4f1e-9349-d0b14cc2f132" />
 
- 
+### Index-Based Partition (Binary Search on Index) — TEMPLATE
+
+ ### When to Use 
+✔ Arrays are sorted
+✔ You are asked for median / k-th element
+✔ You must split arrays into left and right parts
+✔ Condition compares left max ≤ right min
+<img width="426" height="470" alt="image" src="https://github.com/user-attachments/assets/49a66e3d-5ae2-4e25-81f3-579dcda25272" />
+### Question to ask yourself	#
+If YES →
+Are we partitioning an array?	low = max(arr)
+Must each element fit entirely?	low = max(arr)
+Is answer a speed / rate / divisor?	low = 1
+Is zero a valid solution?	low = 0
+Capacity problems → max(arr)
+Speed problems    → 1
 
 ### 📝 NOTE (IMPROVEMENT)
 
