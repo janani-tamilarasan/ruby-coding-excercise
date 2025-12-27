@@ -329,6 +329,74 @@ Is zero allowed?
 Capacity problems → max(arr)
 Speed problems    → 1
 
+## 🌳 Binary Tree 
+
+### 📌 What is a Binary Tree?
+A **binary tree** is a hierarchical data structure in which:
+- Each node has **at most two children**
+- Children are referred to as:
+  - **Left child**
+  - **Right child**
+- A node can have **0, 1, or 2 children**
+
+---
+
+### 📌 Types of Binary Trees
+
+#### 🔹 Proper (Full) Binary Tree
+- Every node has **either 0 or 2 children**
+- No node has exactly one child
+  A
+ / \
+B   C
+
+#### 🔹 Complete Binary Tree
+- All levels are **completely filled**
+- Except possibly the **last level**
+- The last level is filled **from left to right**
+ A
+ / \
+B   C
+
+
+💡 **Used in Heap data structure**
+
+---
+
+## 📌 Tree Traversals
+
+### 🔹 DFS (Depth First Search)
+Explores a branch fully before moving to the next.
+
+#### ✅ Preorder Traversal
+**Root → Left → Right**
+- Used to **copy trees**
+- Used in **prefix expressions**
+
+#### ✅ Inorder Traversal
+**Left → Root → Right**
+- In a **BST**, this gives **sorted order**
+
+#### ✅ Postorder Traversal
+**Left → Right → Root**
+- Used to **delete trees**
+- Used in **postfix expressions**
+
+🧠 Memory Trick:
+Pre → Root first
+In → Root in middle
+Post → Root last
+
+## 📌 BFS (Breadth First Search)
+
+### 🔹 Level Order Traversal
+- Traverses the tree **level by level**
+- Implemented using a **queue**
+
+
+
+
+
 ### 📝 NOTE (IMPROVEMENT)
 
 - Use default hash for frequency problems:
