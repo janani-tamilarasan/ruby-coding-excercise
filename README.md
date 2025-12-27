@@ -393,8 +393,100 @@ Post → Root last
 - Traverses the tree **level by level**
 - Implemented using a **queue**
 
+# 🌳 Binary Tree – Interview Revision Guide
 
+A compact, easy-to-remember guide to **identify Binary Tree problems**, choose the **correct template (DFS/BFS)**, and confidently explain **TC & SC** in interviews.
 
+---
+
+## 1️⃣ How to Identify a Binary Tree Problem
+
+If the problem mentions:
+- `root`
+- `left` / `right`
+- traversal
+- height / depth / diameter
+- views (top, bottom, left, right)
+- path / ancestor / subtree
+
+👉 **It is a Binary Tree problem**
+
+---
+
+## 2️⃣ First Question to Ask Yourself (MOST IMPORTANT)
+
+> **Does the solution depend on children first or level by level?**
+
+| Observation | Use |
+|------------|----|
+| Depends on left & right subtree | **DFS (Recursion)** |
+| Depends on levels / distance / view | **BFS (Queue)** |
+
+---
+
+## 3️⃣ Problem → Template Mapping (Cheat Sheet)
+
+| Problem | Approach | Pattern |
+|------|--------|--------|
+| Height / Depth | DFS | Postorder |
+| Diameter | DFS | Postorder + Global |
+| Max Path Sum | DFS | Postorder + Global |
+| Balanced Tree | DFS | Height check |
+| Identical Trees | DFS | Node comparison |
+| Subtree Check | DFS | Tree matching |
+| Pre/In/Post Order | DFS | Traversal |
+| Level Order | BFS | Queue |
+| Zigzag Traversal | BFS | Queue + Direction |
+| Top / Bottom View | BFS | Vertical Index |
+| Left / Right View | BFS | Level tracking |
+
+---
+
+## 4️⃣ Universal DFS Template (90% Tree Problems)
+
+def dfs(node)
+  return base_value if node.nil?
+
+  left = dfs(node.left)
+  right = dfs(node.right)
+
+  # process current node
+  answer = combine(left, right, node.value)
+
+  return value_to_parent
+end
+
+### Use DFS When:
+
+Height / Depth
+Diameter
+Max Path Sum
+Balanced Tree
+LCA
+Identical Trees
+5️⃣ Universal BFS Template (Views & Levels)
+queue = [root]
+
+while !queue.empty?
+  size = queue.length
+
+  size.times do
+    node = queue.shift
+    queue << node.left if node.left
+    queue << node.right if node.right
+  end
+end
+### Use BFS When:
+Level Order
+Zigzag
+Top / Bottom View
+Left / Right View
+
+### Core Formula Cheat Sheet 🧠
+<img width="663" height="465" alt="image" src="https://github.com/user-attachments/assets/4fcf5f91-ab8b-4d64-b840-d06b201f7741" />
+<img width="549" height="322" alt="image" src="https://github.com/user-attachments/assets/884313fd-e102-4773-a24a-ea819197ba8d" />
+
+--
 
 
 ### 📝 NOTE (IMPROVEMENT)
