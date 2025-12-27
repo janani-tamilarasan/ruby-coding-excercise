@@ -1,0 +1,66 @@
+class TreeNode
+  attr_accessor :value, :left, :right
+
+  def initialize(value)
+    @value = value
+    @left = nil
+    @right = nil
+  end
+end
+
+class BinaryTree
+  attr_accessor :root
+
+  def initialize(arr)
+    @root = build_tree(arr)
+  end
+
+  def top_view
+    return [] if root.nil?
+
+    queue = [[root, 0]]   # [node, vertical_level]
+    map = {}
+
+    until queue.empty?
+      node, line = queue.shift
+      map[line] = node.value unless map.key?(line)
+
+      queue << [node.left, line - 1] if node.left
+      queue << [node.right, line + 1] if node.right
+    end
+
+    map.keys.sort.map { |k| map[k] }
+  end
+
+  private
+
+  def build_tree(arr)
+    return nil if arr.empty? || arr[0].nil?
+
+    root = TreeNode.new(arr[0])
+    queue = [root]
+    i = 1
+
+    while i < arr.length
+      current = queue.shift
+
+      if i < arr.length && !arr[i].nil?
+        current.left = TreeNode.new(arr[i])
+        queue << current.left
+      end
+      i += 1
+
+      if i < arr.length && !arr[i].nil?
+        current.right = TreeNode.new(arr[i])
+        queue << current.right
+      end
+      i += 1
+    end
+
+    root
+  end
+end
+
+# ✅ Correct input
+tree = BinaryTree.new([1, 2, 3, 4, 10, 9, 11, nil, 5, nil, nil, nil, nil, nil, nil, nil, 6])
+p tree.top_view
