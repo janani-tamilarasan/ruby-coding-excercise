@@ -1,7 +1,5 @@
 # 📌 CHEATSHEET
 
----
-
 ## 🔁 TWO POINTERS
 
 ### ✅ When to Use
@@ -23,6 +21,8 @@ Two pointers start from both ends and move towards each other.
 - ✔ Pairs / triplets
 - ✔ Symmetric problems
 
+  
+ [Opposite Direction Problems](problems/opposite_direction.md)
 
 #### Slow and Fast Same Direction(Tortise and rare)(slow →(1 step)   fast  →  → (2 steps)) 
 Both pointers move forward, but at different speeds.
@@ -31,11 +31,14 @@ Both pointers move forward, but at different speeds.
 - ✔ In-place modification
 - ✔ Maintain order
 
+[Slow and Fast Same Direction Problems](problems/slow_and_fast.md)
 
-#### Merge pointer (Ary1 →          Ary2  → )
+#### Merge pointers (Ary1 →          Ary2  → )
 Two pointers traverse two different sorted arrays.
 📌 **Keywords**
 - ✔ Merge or compare two sorted arrays
+- 
+[ Merge pointers Problems](problems/merge_pointers.md)
 
 ---
 
