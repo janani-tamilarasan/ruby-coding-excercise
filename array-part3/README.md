@@ -42,8 +42,7 @@ Write a program to generate Pascal's triangle. In Pascal’s triangle, each numb
 
 
 ***3 Sum : Find triplets that add up to a zero**
-Problem Statement:
------------------
+```text
  Given an array of N integers, your task is to find unique triplets that add up to give a sum of zero. In short, you need to return an array of all the unique triplets [arr[a], arr[b], arr[c]] such that i!=j, j!=k, k!=i, and their sum is equal to zero.
  Example 1:
 Input:
@@ -53,25 +52,29 @@ Output:
 Explanation:
  Out of all possible unique triplets possible, [-1,-1,2] and [-1,0,1] satisfy the condition of summing up to zero with i!=j!=k
 
+ Problem Statement:
+-----------------
+ Given an array of N integers, your task is to find unique triplets that add up to give a sum of zero. In short, you need to return an array of all the unique triplets [arr[a], arr[b], arr[c]] such that i!=j, j!=k, k!=i, and their sum is equal to zero.
+ Example 1:
+Input:
+ nums = [-1,0,1,2,-1,-4]
+Output:
+ [[-1,-1,2],[-1,0,1]]
+Explanation:
+ Out of all possible unique triplets possible, [-1,-1,2] and [-1,0,1] satisfy the condition of summing up to zero with i!=j!=k
+```
+ #### Intitution:
+ - Sort the array.
+ - For each number, use two pointers starting from the next element and the end of the array.
+ - Move pointers inward to find triplets that sum to zero.
+ - Skip duplicates to keep triplets unique.
+ - Collect all such triplets and return them.
 
- Intitution:
-  First sort the array, since it is  sum, we i ,j,k variable -> sum with al thre if greter than decrement k if < 0 increment j idf  matches 0 then j++ and k-- and sorte the array and then continue till k > j
-  - Sort the ary ascending
-  - Intialize output = []
-  - Loop 0 to ary.size with index,ele
-    - if output.last[0] is not equal to ele
-    - iniatlize j = index +1 and k = ary.size
-    - While loop j < K
-      - If sum of ary[i],ary[j],ary[k] < 0
-        then j++
-      - If sum of ary[i],ary[j],ary[k] > 0
-         then k--
-      - If sum of ary[i],ary[j],ary[k] == 0
-          Push triplet to output
-          - Increment j++ and decrement k--
-    - increment i++
-   - Print result
-   Time Complexity: O(NlogN)+O(N2), as The pointer i, is running for approximately N times. And both the pointers j and k combined can run for approximately N times including the operation of skipping duplicates. So the total time complexity will be O(N2). Space Complexity: O(no. of quadruplets), This space is only used to store the answer. We are not using any extra space to solve this problem. So, from that perspective, space complexity can be written as O(1).
+#### Time Complexity: O(NlogN)+O(N2), 
+as The pointer i, is running for approximately N times. And both the pointers j and k combined can run for approximately N times including the operation of skipping duplicates. So the total time complexity will be O(N2).
+#### Space Complexity: O(no. of quadruplets), This space is only used to store the answer. We are not using any extra space to solve this problem. So, from that perspective, space complexity can be written as O(1).
+
+---
 
 **Length of the longest subarray with zero Sum**
 
