@@ -24,8 +24,7 @@ Two pointers start from both ends and move towards each other.
 - ✔ Symmetric problems
 
 
-#### Slow and Fast Same Direction(Tortise and rare)(slow →       
-                                               fast  →  →) 
+#### Slow and Fast Same Direction(Tortise and rare)(slow →(1 step)   fast  →  → (2 steps)) 
 Both pointers move forward, but at different speeds.
 📌 **Keywords**
 - ✔ Remove / filter elements 
