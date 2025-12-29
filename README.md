@@ -1,6 +1,18 @@
-# 📌 CHEATSHEET
+# 📌 CHEATSHEET - Table of Contents
 
-## 🔁 TWO POINTERS
+- [Two Pointers](#two-pointers)
+- [Sliding Window](#sliding-window-contiguous--range--sliding-window)
+- [Hashing](#hashing)
+- [Prefix Sum](#prefix-sum-store-cumulative-sum-so-middle-can-be-found-by-subtraction)
+- [Dutch National Flag Algorithm](#dutch-national-flag-algorithm-three-pointer---lowmidhigh)
+- [Boyer–Moore Majority Vote Algorithm](#boyer–moore-majority-vote-algorithmvote---count-cancelation---majorith-of-n2-times)
+- [Kadane's Algorithm](#kadanes-algorithm-maximum-subarray-sum)
+
+---
+
+# Patterns
+
+## Two Pointers
 
 ### ✅ When to Use
 - ✔ Sorted 
@@ -97,7 +109,50 @@ result
 ```
 [ Merge pointers Problems](problems/merge_pointers.md)
 
+#### FAST & SLOW POINTERS(Hare and tortise algorithm) Slow -> 1 and Fast -> 2 steps
+📌 **Keywords**
+- ✔ cycle / loop
+- ✔ linked list loop
+-  ✔ detect duplicate
+- ✔ Values are in a fixed range (1…n)
+- ✔ find middle
+### Pattern
+```text
+slow → 1 step
+fast → 2 steps
+
+If loop exists → fast catches slow
+```
+```ruby
+slow = head
+fast = head
+
+while fast && fast.next
+  slow = slow.next
+  fast = fast.next.next
+
+  return true if slow == fast
+end
+
+false
+```
+
+#### SORT + TWO POINTERS (“Sort → Fix → Sweep”)
+🔑 Use when:
+2-sum / 3-sum / closest
+minimize / maximize difference
+
+#### 🧩 Pattern Steps
+✔ Sort
+✔ Fix one
+✔ Two pointer on rest
+
+🧠 Memory line:
+
+“Sort → Fix → Sweep”
+
 ---
+
 ##  🔁  SLIDING WINDOW (Contiguous + Range → Sliding Window)
 
 ### ✅ Use Sliding Window if You See
@@ -114,7 +169,10 @@ result
 📌 **Keywords**
 - ✔ “subarray of size k”
 - ✔ “window length k”
- 
+- 
+### 👉 **Time / Space**
+O(n) time, O(1) space 
+
 🔹 **Pattern**
 - ✔ Build first window
 - ✔ Slide: remove left, add right
@@ -168,6 +226,9 @@ end
 ✔ Window size not fixed
 ✔ Condition-based problems
 
+### 👉 **Time / Space**
+O(n) time, O(1) space
+
 📌 **Keywords**
 - ✔ at most
 - ✔ at least
@@ -194,6 +255,8 @@ end
 #### 3️⃣ COUNT / FREQUENCY WINDOW
 🔹 When
 ✔ Characters or numbers frequency matters
+### 👉 **Time / Space**
+O(n) time, O(m + n ) hasing spacespace
 
 **🧠 Memory Trick**
 
@@ -210,9 +273,9 @@ end
 
 <img width="512" height="134" alt="image" src="https://github.com/user-attachments/assets/b6165e62-df1c-4e2d-9316-de3f21c40601" />
 
---
+---
 
-## 🧮 HASHING
+## 🔁  HASHING
 
 ### ✅ When to Use
 - ✔ Frequency / count
@@ -221,10 +284,93 @@ end
 - ✔ Fast lookup
 - ✔ Order doesn’t matter
 - ✔ Unsorted array
+### 👉 **Time / Space**
+O(n) time, O(k) space 
+
+```ruby
+# Initialize hash or set
+freq = Hash.new(0)   # for counting
+set = Set.new        # for existence
+
+arr.each do |el|
+  # 1️⃣ Count / frequency
+  freq[el] += 1
+
+  # 2️⃣ Existence check
+  if set.include?(el)
+    # duplicate / condition met
+  else
+    set.add(el)
+  end
+
+  # 3️⃣ Prefix sum / cumulative check (if needed)
+  # sum += el
+  # count += freq[sum - k] if freq[sum - k]
+end
+
+# 4️⃣ Use freq/set to compute result
+# Examples: first unique, max frequency, check duplicate, subarray count
+```
+⚠️ **Important:** Use Hash.new, Array.new.fill(-1)
+Some times we use Hashing with store count or index
 
 ---
 
-## 🇳🇱 DUTCH NATIONAL FLAG ALGORITHM
+## 🔁 PREFIX SUM (Store cumulative sum so middle can be found by subtraction)
+Prefix sum = cumulative sum up to an index
+**prefix[i] = a[0] + a[1] + ... + a[i]**
+ 
+### ✅ When to Use
+    - ✅ “subarray” (contiguous)
+	- ✅ “range sum”
+	- ✅ “sum equals K”
+	- ✅ “count number of subarrays”
+	- ✅ “find length of subarray”
+	- ✅ “continuous sequence”
+	- ✅ negative numbers present
+	- ✅ multiple sum queries
+### 👉 **Time / Space**
+O(n) time, O(n) space 
+
+#### 🧠 Patrern
+✔ Build running sum
+✔ Subtract to get range
+✔ Use hashmap (if counting)
+1. “CUT THE MIDDLE”
+   prefix[j] - prefix[i] = middle subarray
+2. “Seen before = valid subarray”
+
+#### CORE IDEA (Most Important Line)
+```text	
+	For any subarray i → j:
+	
+**sum(i..j) = prefix[j] - prefix[i-1]**
+
+**prefix[i] = prefix[j] - K**
+```
+👉 Use a HashMap to store prefix frequencies.
+
+### Template PREFIX SUM + HASHMAP
+```ruby
+def subarray_sum(nums, k)
+  count = 0
+  prefix_sum = 0
+  freq = Hash.new(0)
+
+  freq[0] = 1   # VERY IMPORTANT
+
+  nums.each do |num|
+    prefix_sum += num
+    count += freq[prefix_sum - k]
+    freq[prefix_sum] += 1
+  end
+
+  count
+end
+```
+---
+
+## 🔁  DUTCH NATIONAL FLAG ALGORITHM (Three pointer - low,mid,high)
 
 ### ✅ When to Use
 - ✔ Array contains ONLY **3 distinct values**
@@ -233,18 +379,17 @@ end
 - ✔ **Single pass / O(n)**
 - ✔ **No extra space**
 
+### 👉 **Time / Space**
+O(n) time, O(1) space 
+
 📌 **Most Common Problem**
 - Sort Colors / Sort 0s, 1s, and 2s
 
----
-
-### 🔁 Three Pointers (Always the Same)
+### Three Pointers (Always the Same)
 
 - `low`  → where `0` should go  
 - `mid`  → current element  
 - `high` → where `2` should go  
-
----
 
 ### 🚦 Action Table
 
@@ -256,26 +401,49 @@ end
 
 ❗ **NOTE:** No `mid++` for `2`
 
----
-
-### 🧩 Pseudocode
+### Pattern
 
  - while mid <= high
    if 0 → swap low & mid → low++, mid++
    if 1 → mid++
    if 2 → swap mid & high → high--
 
+```ruby
+arr = [2,0,1,2,1,0]
+low = 0
+mid = 0
+high = arr.length - 1
+
+while mid <= high
+  case arr[mid]
+  when 0
+    arr[low], arr[mid] = arr[mid], arr[low]
+    low += 1
+    mid += 1
+  when 1
+    mid += 1
+  when 2
+    arr[mid], arr[high] = arr[high], arr[mid]
+    high -= 1
+  end
+end
+
+arr
+```
+
 ---
 
-## 🗳️ BOYER–MOORE MAJORITY VOTE ALGORITHM
+## 🔁  BOYER–MOORE MAJORITY VOTE ALGORITHM(vote - count cancelation - majorith of n/2 times)
 
 ### ✅ When to Use
 - ✔ Find a majority element
 - ✔ Appears more than ⌊n/2⌋ times
 - ✔ Majority element is guaranteed
 - ✔ O(1) extra space required
+- 
+⏱ **Time Complexity:** O(n)
 
----
+📦 **Space Complexity:** O(1)
 
 ### 🔑 Keywords
 - majority element
@@ -284,41 +452,31 @@ end
 - dominant element
 - single element survives
 
----
-
-### 🧠 Tips to Remember
+### 🧠 Pattern
 - Same element → **+1 vote**
 - Different element → **−1 vote**
 - Votes become `0` → change candidate
 
----
+```ruby
+def majority_element(nums)
+  candidate = nil
+  count = 0
 
-### 🧩 Pseudocode
+  nums.each do |num|
+    if count == 0
+      candidate = num
+    end
 
-   count = 0
-   candidate = nil
-   
-   for each element
-   
-      if count == 0
-      
-         candidate = element
-         
-         count = 1
-         
-      else if element == candidate
-      
-         count++
-         
-      else
-      
-         count--
-         
-   return candidate
+    if num == candidate
+      count += 1
+    else
+      count -= 1
+    end
+  end
 
-⏱ **Time Complexity:** O(n)  
-📦 **Space Complexity:** O(1)
-
+  candidate
+end
+```
 ---
 
 ## 🔁 KADANE's ALGORITHM (MAXIMUM SUBARRAY SUM)
@@ -336,7 +494,17 @@ DROP NEGATIVE, KEEP POSITIVE
 - ✔ largest sum contiguous subarray
 - ✔ maximum sum
 - ✔ continuous elements
+- 
+⏱ **Time Complexity:** O(n)
 
+📦 **Space Complexity:** O(1)
+
+### 🧠 Pattern
+- 1. Start from first element
+- 2. Extend or Restart
+- 3. Update best
+
+```ruby
 sum += element
 max_sum = sum if(sum > max_sum)
 
@@ -344,10 +512,7 @@ if sum < 0
   sum = 0
 Return max_sum
 
-⏱ **Time & Space Complexity**
-Time	O(n)
-Space	O(1)
-
+```
 ---
 
 ## NEXT PERMUTION:(Break → Swap → Reverse)
@@ -372,53 +537,6 @@ Space	O(1)
         rom the right side, find the smallest element > arr[i]Swap it with arr[i].
 
 ---
-## 🔁 PREFIX SUM 
-Prefix sum = cumulative sum up to an index
-**prefix[i] = a[0] + a[1] + ... + a[i]**
- 
-### ✅ When to Use
-    - ✅ “subarray” (contiguous)
-	- ✅ “range sum”
-	- ✅ “sum equals K”
-	- ✅ “count number of subarrays”
-	- ✅ “find length of subarray”
-	- ✅ “continuous sequence”
-	- ✅ negative numbers present
-	- ✅ multiple sum queries
-
-### CORE IDEA (Most Important Line)
-	
-	For any subarray i → j:
-	
-### sum(i..j) = prefix[j] - prefix[i-1]
-
-If:
-
-### prefix[j] - prefix[i] = K
-
-Then:
-
-### prefix[i] = prefix[j] - K
-
-👉 Use a HashMap to store prefix frequencies.
-
-### Template
-def subarray_sum(nums, k)
-  count = 0
-  prefix_sum = 0
-  freq = Hash.new(0)
-
-  freq[0] = 1   # VERY IMPORTANT
-
-  nums.each do |num|
-    prefix_sum += num
-    count += freq[prefix_sum - k]
-    freq[prefix_sum] += 1
-  end
-
-  count
-end
-
 ## 🔁 Binary search
  ✅ 1. Search space is sorted
  ✅ 2. Any range like range like 1..10^9
