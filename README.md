@@ -37,12 +37,6 @@ Two pointers traverse two different sorted arrays.
 📌 **Keywords**
 - ✔ Merge or compare two sorted arrays
 
-
-#### Partition-Based Two Pointers < pivot | unknown | > pivot
-Used to partition an array around a pivot.
-📌 **Keywords**
-- ✔ Classification problems
-
 ---
 
 ## 🧮 HASHING
