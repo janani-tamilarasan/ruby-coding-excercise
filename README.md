@@ -21,26 +21,196 @@ Two pointers start from both ends and move towards each other.
 - ✔ Pairs / triplets
 - ✔ Symmetric problems
 
-  
+```ruby
+l = 0
+r = ary.length - 1
+
+while l < r
+  # 1. Use ary[l] and ary[r]
+  # 2. Check condition
+  # 3. Move pointers accordingly
+
+  if condition
+    l += 1
+  else
+    r -= 1
+  end
+end
+```
  [Opposite Direction Problems](problems/opposite_direction.md)
 
-#### Slow and Fast Same Direction(Tortise and rare)(slow →(1 step)   fast  →  → (2 steps)) 
+#### Slow and Fast Same Direction(Tortise and rare)(Fast scans, Slow stores) 
 Both pointers move forward, but at different speeds.
 📌 **Keywords**
 - ✔ Remove / filter elements 
 - ✔ In-place modification
 - ✔ Maintain order
 
+```ruby
+slow = 0
+
+(0...ary.length).each do |fast|
+  # Check condition using ary[fast]
+  if condition
+    ary[slow] = ary[fast]   # keep valid element
+    slow += 1
+  end
+end
+
+# Result is usually in ary[0...slow]
+
+```
+
 [Slow and Fast Same Direction Problems](problems/slow_and_fast.md)
 
-#### Merge pointers (Ary1 →          Ary2  → )
+#### Merge pointers (“Compare → pick smaller → move pointer”)
 Two pointers traverse two different sorted arrays.
 📌 **Keywords**
 - ✔ Merge or compare two sorted arrays
-- 
+```ruby
+i = 0
+j = 0
+result = []
+
+while i < arr1.length && j < arr2.length
+  if arr1[i] <= arr2[j]
+    result << arr1[i]
+    i += 1
+  else
+    result << arr2[j]
+    j += 1
+  end
+end
+
+# add remaining elements
+while i < arr1.length
+  result << arr1[i]
+  i += 1
+end
+
+while j < arr2.length
+  result << arr2[j]
+  j += 1
+end
+
+result
+```
 [ Merge pointers Problems](problems/merge_pointers.md)
 
 ---
+##  🔁  SLIDING WINDOW (Contiguous + Range → Sliding Window)
+
+### ✅ Use Sliding Window if You See
+- ✔ Subarray / Substring / Continuous
+- ✔ Longest / Shortest / Max / Min / Count
+- ✔ At most / At least / Exactly / Without
+- ✔ Constraint that can break and be fixed
+
+❌ **Do NOT use if the problem is not continuous**
+
+### 🔹 Types of Sliding Window
+
+#### 1️⃣ Fixed Size Window (Window size = `K` => “K is fixed → no shrinking”)
+📌 **Keywords**
+- ✔ “subarray of size k”
+- ✔ “window length k”
+ 
+🔹 **Pattern**
+- ✔ Build first window
+- ✔ Slide: remove left, add right
+Tempalte 1 or Template 2 cn be use
+
+**Tempalte 1:**
+```ruby
+Given K=4v ary =[] 
+fun fixedSliding {
+// calcuate with firsst n elements
+  for (let i = 0; i < k; i++) {
+    //Compute Calc goes  here
+  }
+  // Store the value as ex: maxSum
+  // Slide the window from start to end and  calcuate with  n+1 elements to ary.length
+      for (let i = k; i < arr.length; i++) {
+    // Expand the window (add the k the element)
+    windowSum += ary[k]
+   // Trim the previus element using ary[i-k]
+    windowSum -= ary[i-k]
+  //Compute Calc goes  here
+}
+```
+
+**Tempalte 2:**
+```ruby
+l = 0
+r = 0
+window_sum = 0
+
+while r < arr.length
+  window_sum += arr[r]
+
+  if r - l + 1 > k
+    window_sum -= arr[l]
+    l += 1
+  end
+
+  if r - l + 1 == k
+    # use window_sum
+  end
+
+  r += 1
+end
+
+```
+---
+
+#### 2️⃣ Variable Size Window (Dynamic window) “Expand → break → shrink”
+🔹 When
+✔ Window size not fixed
+✔ Condition-based problems
+
+📌 **Keywords**
+- ✔ at most
+- ✔ at least
+- ✔ k distinct
+- ✔ no repeating
+- ✔ flip k zeros
+- 
+🔹 Pattern
+- ✔ Expand right
+- ✔ Shrink left when condition breaks
+
+```ruby
+l = 0
+
+(0...arr.length).each do |r|
+  # add arr[r]
+
+  while condition_invalid
+    # remove arr[l]
+    l += 1
+  end
+end
+```
+#### 3️⃣ COUNT / FREQUENCY WINDOW
+🔹 When
+✔ Characters or numbers frequency matters
+
+**🧠 Memory Trick**
+
+“Window + HashMap”
+
+#### 4️⃣ AT MOST / AT LEAST WINDOW
+
+🔹 When
+✔ “At most K” / “At least K” asked
+
+**🧠 Trick**
+
+**At least K = total − at most (K−1)**
+
+<img width="512" height="134" alt="image" src="https://github.com/user-attachments/assets/b6165e62-df1c-4e2d-9316-de3f21c40601" />
+
+--
 
 ## 🧮 HASHING
 
@@ -51,37 +221,6 @@ Two pointers traverse two different sorted arrays.
 - ✔ Fast lookup
 - ✔ Order doesn’t matter
 - ✔ Unsorted array
-
----
-
-## 🪟 SLIDING WINDOW
-
-### ✅ Use Sliding Window if You See
-- ✔ Subarray / Substring / Continuous
-- ✔ Longest / Shortest / Max / Min / Count
-- ✔ At most / At least / Exactly / Without
-- ✔ Constraint that can break and be fixed
-
-❌ **Do NOT use if the problem is not continuous**
-
----
-
-### 🔹 Types of Sliding Window
-
-#### 1️⃣ Fixed Size Window (Window size = `K`)
-📌 **Keywords**
-- ✔ “subarray of size k”
-- ✔ “window length k”
-
----
-
-#### 2️⃣ Variable Size Window (Dynamic window)
-📌 **Keywords**
-- ✔ at most
-- ✔ at least
-- ✔ k distinct
-- ✔ no repeating
-- ✔ flip k zeros
 
 ---
 
