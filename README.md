@@ -5,12 +5,44 @@
 ## 🔁 TWO POINTERS
 
 ### ✅ When to Use
-- ✔ Sorted array
+- ✔ Sorted 
+- ✔ Comparision
 - ✔ Pairs / triplets
-- ✔ Target sum
-- ✔ Left + Right comparison
 - ✔ In-place modification
-- ✔ Opposite ends approach
+- ✔ Left + Right comparison
+- ✔ Remove two loops to one loop ie) 0(n2) => 0(n)
+
+### 👉 **Time / Space**
+O(n) time, O(1) space
+
+### Types of Two pointers
+#### Opposite Direction (L →        ← R) 
+Two pointers start from both ends and move towards each other.
+📌 **Keywords**
+- ✔ Sorted 
+- ✔ Pairs / triplets
+- ✔ Symmetric problems
+
+
+#### Slow and Fast Same Direction(Tortise and rare)(slow →       
+                                               fast  →  →) 
+Both pointers move forward, but at different speeds.
+📌 **Keywords**
+- ✔ Remove / filter elements 
+- ✔ In-place modification
+- ✔ Maintain order
+
+
+#### Merge pointer (Ary1 →          Ary2  → )
+Two pointers traverse two different sorted arrays.
+📌 **Keywords**
+- ✔ Merge or compare two sorted arrays
+
+
+#### Partition-Based Two Pointers < pivot | unknown | > pivot
+Used to partition an array around a pivot.
+📌 **Keywords**
+- ✔ Classification problems
 
 ---
 
