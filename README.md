@@ -12,7 +12,7 @@
 
 # Patterns
 
-##  🔁 Two Pointers
+## Two Pointers
 
 ### ✅ When to Use
 - ✔ Sorted 
@@ -152,8 +152,10 @@ minimize / maximize difference
 “Sort → Fix → Sweep”
 
 ---
+---
 
-##  🔁  SLIDING WINDOW (Contiguous + Range → Sliding Window)
+## Sliding Window 
+(Contiguous + Range → Sliding Window)
 
 ### ✅ Use Sliding Window if You See
 - ✔ Subarray / Substring / Continuous
