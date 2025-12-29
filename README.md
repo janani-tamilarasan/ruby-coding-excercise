@@ -12,7 +12,7 @@
 
 # Patterns
 
-## Two Pointers
+##  🔁 Two Pointers
 
 ### ✅ When to Use
 - ✔ Sorted 
