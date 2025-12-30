@@ -1,12 +1,12 @@
 # 📌 CHEATSHEET - Table of Contents
 
 - [Two Pointers](#two-pointers)
-- [Sliding Window](#sliding-window-contiguous--range--sliding-window)
+- [Sliding Window](#sliding-window)
 - [Hashing](#hashing)
-- [XOR](#xor)
-- [Prefix Sum](#prefix-sum-store-cumulative-sum-so-middle-can-be-found-by-subtraction)
-- [Dutch National Flag Algorithm](#dutch-national-flag-algorithm-three-pointer---lowmidhigh)
-- [Boyer–Moore Majority Vote Algorithm](#boyer–moore-majority-vote-algorithmvote---count-cancelation---majorith-of-n2-times)
+- [Xor](#xor)
+- [Prefix Sum](#prefix-sum)
+- [Dutch National Flag Algorithm](#dutch-national-flag-algorithm)
+- [Boyer Moore Majority Vote Algorithm](#boyer–moore-majority-vote-algorithm)
 - [Kadanes Algorithm](#kadanes-algorithm)
 
 ---
@@ -222,7 +222,6 @@ while r < arr.length
 end
 
 ```
----
 
 #### 2️⃣ Variable Size Window (Dynamic window) “Expand → break → shrink”
 🔹 When
@@ -277,6 +276,9 @@ O(n) time, O(m + n ) hasing spacespace
 <img width="512" height="134" alt="image" src="https://github.com/user-attachments/assets/b6165e62-df1c-4e2d-9316-de3f21c40601" />
 
 ---
+---
+
+## Xor
 
 ## 🔁  XOR
 **Duplicates cancel, one remains” → XOR**
@@ -292,6 +294,9 @@ x ^ x = 0
 0 ^ x = x
 ```
 ---
+---
+
+## Hashing
 
 ## 🔁  HASHING
 
@@ -333,6 +338,9 @@ end
 Some times we use Hashing with store count or index
 
 ---
+---
+
+## Prefix Sum
 
 ## 🔁 PREFIX SUM (Store cumulative sum so middle can be found by subtraction)
 Prefix sum = cumulative sum up to an index
@@ -387,6 +395,9 @@ def subarray_sum(nums, k)
 end
 ```
 ---
+---
+
+## Dutch National Flag Algorithm
 
 ## 🔁  DUTCH NATIONAL FLAG ALGORITHM (Three pointer - low,mid,high)
 
@@ -450,6 +461,9 @@ arr
 ```
 
 ---
+---
+
+## Boyer Moore Majority Vote Algorithm
 
 ## 🔁  BOYER–MOORE MAJORITY VOTE ALGORITHM(vote - count cancelation - majorith of n/2 times)
 
