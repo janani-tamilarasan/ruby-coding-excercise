@@ -355,8 +355,16 @@ Prefix sum = cumulative sum up to an index
 	- ✅ “continuous sequence”
 	- ✅ negative numbers present
 	- ✅ multiple sum queries
+	
 ### 👉 **Time / Space**
 O(n) time, O(n) space 
+
+```text
+Range Sum    → prefix[R] - prefix[L-1]
+Count        → freq map + (sum - K)
+Longest      → index map + first occurrence
+
+```
 
 #### 🧠 Patrern
 ✔ Build running sum
@@ -375,24 +383,52 @@ O(n) time, O(n) space
 **prefix[i] = prefix[j] - K**
 ```
 👉 Use a HashMap to store prefix frequencies.
+👉 Always add 0 as first in prefix array
 
-### Template PREFIX SUM + HASHMAP
-```ruby
-def subarray_sum(nums, k)
-  count = 0
-  prefix_sum = 0
-  freq = Hash.new(0)
+#### 1️⃣ RANGE SUM 
+ - Always add 0 as first in prefix array
+ - 
+ 
+```text
+sum(i, j) = prefix[j] - prefix[i - 1]
 
-  freq[0] = 1   # VERY IMPORTANT
+```
 
-  nums.each do |num|
-    prefix_sum += num
-    count += freq[prefix_sum - k]
-    freq[prefix_sum] += 1
-  end
+#### 2️⃣ COUNT of Subarrays sum equal to k
+🧠 MEMORIZATION LINE
+  COUNT → HashMap stores prefix_sum with count
+🧩 Keywords
+	“Count subarrays with sum = K”
+	“Number of subarrays”
+	“Binary array / target sum”
 
-  count
-end
+```text
+prefixSum += currentSum
+remaining_value = prefixSum - k(given)
+If:
+ - remaining_value exists before
+ - we found a get the count and use and store the prefis sum value with count in hash
+
+count  +=  prefis sum[remaining_value].count
+```
+
+#### 3️⃣ LONGEST Subarray (Length problem)
+🧠 MEMORIZATION LINE 
+  COUNT → HashMap stores prefix_sum(j) with first_seen_index(i) 
+ 
+  *** NOTE: sum(i,j) =  prefix_sum(j) -  prefix_sum(i - 1)
+  
+🧩 Keywords
+	“Longest subarray”
+	“Maximum length”
+	“With sum K / equal 0 / equal target”
+```text
+prefixSum += currentSum
+remaining_value = prefixSum - k(given)
+If:
+ - remaining_value exists before
+ - we found a get the count and use and store the prefis sum value with first_seend_index in hash
+length  +=  i - prefis sum[remaining_value].index
 ```
 ---
 ---
