@@ -7,7 +7,7 @@
 - [Prefix Sum](#prefix-sum-store-cumulative-sum-so-middle-can-be-found-by-subtraction)
 - [Dutch National Flag Algorithm](#dutch-national-flag-algorithm-three-pointer---lowmidhigh)
 - [Boyer–Moore Majority Vote Algorithm](#boyer–moore-majority-vote-algorithmvote---count-cancelation---majorith-of-n2-times)
-- [Kadane's Algorithm](#kadanes-algorithm-maximum-subarray-sum)
+- [Kadanes Algorithm](#kadanes-algorithm)
 
 ---
 
@@ -496,7 +496,7 @@ def majority_element(nums)
 end
 ```
 ---
-
+## Kadanes Algorithm
 ## 🔁 KADANE's ALGORITHM (MAXIMUM SUBARRAY SUM)
 DROP NEGATIVE, KEEP POSITIVE
 
