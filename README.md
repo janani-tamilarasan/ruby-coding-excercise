@@ -10,7 +10,7 @@
 - [Kadanes Algorithm](#kadanes-algorithm)
 - [Next Permutation](#next-permutation)
 
---
+----
 
 # Patterns
 
