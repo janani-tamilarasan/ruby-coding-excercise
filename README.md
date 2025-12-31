@@ -8,6 +8,7 @@
 - [Dutch National Flag Algorithm](#dutch-national-flag-algorithm)
 - [Boyer Moore Majority Vote Algorithm](#boyer–moore-majority-vote-algorithm)
 - [Kadanes Algorithm](#kadanes-algorithm)
+- [Next Permutation](#next-permutaion)
 
 ---
 
@@ -582,6 +583,8 @@ Return max_sum
 
 ```
 ---
+
+## Next Permutation
 
 ## NEXT PERMUTION:(Break → Swap → Reverse)
  " Find the first dip from the right, fix it, then sort the tail.”
