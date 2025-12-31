@@ -165,6 +165,11 @@ minimize / maximize difference
 - ✔ Constraint that can break and be fixed
 
 ❌ **Do NOT use if the problem is not continuous**
+Note:
+If they ask
+**max/min of count -> increment the coubt
+length of subarray = (r-l+1)
+count of subarray = (r-l+1)**
 
 ### 🔹 Types of Sliding Window
 
@@ -222,6 +227,7 @@ while r < arr.length
 end
 
 ```
+#### 2️⃣ Atmost and atleast
 
 #### 2️⃣ Variable Size Window (Dynamic window) “Expand → break → shrink”
 🔹 When
@@ -252,9 +258,15 @@ l = 0
     # remove arr[l]
     l += 1
   end
+//Finnd max/min
 end
 ```
-#### 3️⃣ COUNT / FREQUENCY WINDOW
+[Longest Substring with At Most K Distinct Characters](https://takeuforward.org/data-structure/longest-substring-with-at-most-k-distinct-characters)
+
+
+#### 3️⃣ COUNT / FREQUENCY WINDOW -> Sliding_window + Hashhing
+It can be use if any str and char are given
+In hash we wll store hash wuth count
 🔹 When
 ✔ Characters or numbers frequency matters
 ### 👉 **Time / Space**
@@ -264,7 +276,10 @@ O(n) time, O(m + n ) hasing spacespace
 
 “Window + HashMap”
 
-#### 4️⃣ AT MOST / AT LEAST WINDOW
+[Length of Longest Substring without Repeating Characters](https://takeuforward.org/data-structure/length-of-longest-substring-without-any-repeating-character)
+[Number of substring containing all three characters](https://takeuforward.org/data-structure/number-of-substring-containing-all-three-characters)
+
+#### 4️⃣ Exactly k element
 
 🔹 When
 ✔ “At most K” / “At least K” asked
@@ -273,6 +288,35 @@ O(n) time, O(m + n ) hasing spacespace
 
 **At least K = total − at most (K−1)**
 
+```ruby
+ at_most (K) -  at_most (K−1) 
+
+```
+[Binary subarray with sum](https://takeuforward.org/data-structure/binary-subarray-with-sum)
+[Count number of nice subarrays](https://takeuforward.org/data-structure/count-number-of-nice-subarrays)
+[Subarray with k different integers](https://takeuforward.org/data-structure/subarray-with-k-different-integers)
+
+#### 4️⃣ Replacement or flip
+```ruby
+l = 0
+zeros_count(replacement_coutnt) = 0
+(0...arr.length).each do |r|
+  # If replacement found then increase the zeros_count
+
+  while zeros_count > k
+    # remove arr[l]
+    l += 1
+  end
+//Finnd max/min
+end
+```
+[Max Consecutive Ones III](https://takeuforward.org/data-structure/max-consecutive-ones-iii)
+
+others:
+
+[longest repeating character replacement](https://takeuforward.org/data-structure/longest-repeating-character-replacement)
+[Maximum point you can obtain from cards](https://takeuforward.org/data-structure/maximum-point-you-can-obtain-from-cards)
+[miniumm Window Substring](https://takeuforward.org/data-structure/subarray-with-k-different-integers)
 <img width="512" height="134" alt="image" src="https://github.com/user-attachments/assets/b6165e62-df1c-4e2d-9316-de3f21c40601" />
 
 ----
