@@ -277,6 +277,7 @@ O(n) time, O(m + n ) hasing spacespace
 “Window + HashMap”
 
 [Length of Longest Substring without Repeating Characters](https://takeuforward.org/data-structure/length-of-longest-substring-without-any-repeating-character)
+
 [Number of substring containing all three characters](https://takeuforward.org/data-structure/number-of-substring-containing-all-three-characters)
 
 #### 4️⃣ Exactly k element
@@ -293,8 +294,11 @@ O(n) time, O(m + n ) hasing spacespace
 
 ```
 [Binary subarray with sum](https://takeuforward.org/data-structure/binary-subarray-with-sum)
+
 [Count number of nice subarrays](https://takeuforward.org/data-structure/count-number-of-nice-subarrays)
+
 [Subarray with k different integers](https://takeuforward.org/data-structure/subarray-with-k-different-integers)
+
 
 #### 4️⃣ Replacement or flip
 ```ruby
@@ -312,12 +316,12 @@ end
 ```
 [Max Consecutive Ones III](https://takeuforward.org/data-structure/max-consecutive-ones-iii)
 
+
 others:
 
 [longest repeating character replacement](https://takeuforward.org/data-structure/longest-repeating-character-replacement)
 [Maximum point you can obtain from cards](https://takeuforward.org/data-structure/maximum-point-you-can-obtain-from-cards)
 [miniumm Window Substring](https://takeuforward.org/data-structure/subarray-with-k-different-integers)
-<img width="512" height="134" alt="image" src="https://github.com/user-attachments/assets/b6165e62-df1c-4e2d-9316-de3f21c40601" />
 
 ----
 
