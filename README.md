@@ -153,8 +153,7 @@ minimize / maximize difference
 
 “Sort → Fix → Sweep”
 
----
----
+----
 
 ## Sliding Window 
 (Contiguous + Range → Sliding Window)
@@ -276,8 +275,7 @@ O(n) time, O(m + n ) hasing spacespace
 
 <img width="512" height="134" alt="image" src="https://github.com/user-attachments/assets/b6165e62-df1c-4e2d-9316-de3f21c40601" />
 
----
----
+----
 
 ## Xor
 
@@ -294,8 +292,7 @@ O(n) time, O(m + n ) hasing spacespace
 x ^ x = 0
 0 ^ x = x
 ```
----
----
+----
 
 ## Hashing
 
@@ -338,8 +335,7 @@ end
 ⚠️ **Important:** Use Hash.new, Array.new.fill(-1)
 Some times we use Hashing with store count or index
 
----
----
+----
 
 ## Prefix Sum
 
@@ -431,8 +427,7 @@ If:
  - we found a get the count and use and store the prefis sum value with first_seend_index in hash
 length  +=  i - prefis sum[remaining_value].index
 ```
----
----
+----
 
 ## Dutch National Flag Algorithm
 
@@ -498,7 +493,7 @@ arr
 ```
 
 ---
----
+----
 
 ## Boyer Moore Majority Vote Algorithm
 
@@ -546,7 +541,7 @@ def majority_element(nums)
   candidate
 end
 ```
----
+----
 ## Kadanes Algorithm
 ## 🔁 KADANE's ALGORITHM (MAXIMUM SUBARRAY SUM)
 DROP NEGATIVE, KEEP POSITIVE
@@ -582,9 +577,7 @@ if sum < 0
 Return max_sum
 
 ```
----
----
-
+----
 ## Next Permutation
 ## NEXT PERMUTION:(Break → Swap → Reverse)
  " Find the first dip from the right, fix it, then sort the tail.”
@@ -603,8 +596,7 @@ Dip → Just bigger → Swap → Reverse suffix
         - Find the next greater element on the right
         - Swap
         - Reverse the right part
----
----
+----
 
 ## Binary Search
 
@@ -684,6 +676,9 @@ Is zero allowed?
 
 Capacity problems → max(arr)
 Speed problems    → 1
+
+----
+## Binary Tree
 
 ## 🌳 Binary Tree 
 
@@ -842,12 +837,11 @@ Left / Right View
 <img width="663" height="465" alt="image" src="https://github.com/user-attachments/assets/4fcf5f91-ab8b-4d64-b840-d06b201f7741" />
 <img width="549" height="322" alt="image" src="https://github.com/user-attachments/assets/884313fd-e102-4773-a24a-ea819197ba8d" />
 
---
-
+----
 
 ### 📝 NOTE (IMPROVEMENT)
 
 - Use default hash for frequency problems:
-# Hash.new(0)
+### Hash.new(0)
 - if you want to assign infinity you use
- # max_sum = -Float::INFINITY
+ ### max_sum = -Float::INFINITY
