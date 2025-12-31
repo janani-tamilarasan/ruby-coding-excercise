@@ -320,8 +320,11 @@ end
 others:
 
 [longest repeating character replacement](https://takeuforward.org/data-structure/longest-repeating-character-replacement)
+
 [Maximum point you can obtain from cards](https://takeuforward.org/data-structure/maximum-point-you-can-obtain-from-cards)
+
 [miniumm Window Substring](https://takeuforward.org/data-structure/subarray-with-k-different-integers)
+
 
 ----
 
