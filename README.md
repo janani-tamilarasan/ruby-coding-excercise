@@ -583,10 +583,13 @@ Return max_sum
 
 ```
 ---
+---
+
 ## Next Permutation
 ## NEXT PERMUTION:(Break → Swap → Reverse)
  " Find the first dip from the right, fix it, then sort the tail.”
-
+🧠 MEMORIZATION LINE 
+Dip → Just bigger → Swap → Reverse suffix
  
 ### ✅ When to Use
 
@@ -596,16 +599,15 @@ Return max_sum
   - ✔ permutations in dictionary order
 
    * Find the breakpoint
-        - Scan from right to left and find the first index i such that:
-        arr[i] < arr[i + 1]
-        If no such index exists → array is in descending order.
-        reverse entire array and return.
-     * Find the next larger element (from right)
-	     From the right side, find the smallest element > arr[i] Swap it with arr[i].
-     * Reverse the right part
-        rom the right side, find the smallest element > arr[i]Swap it with arr[i].
-
+        - Find the “dip” (breaking point)
+        - Find the next greater element on the right
+        - Swap
+        - Reverse the right part
 ---
+---
+
+## Binary Search
+
 ## 🔁 Binary search
  ✅ 1. Search space is sorted
  ✅ 2. Any range like range like 1..10^9
