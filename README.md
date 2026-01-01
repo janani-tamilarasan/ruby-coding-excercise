@@ -16,7 +16,7 @@
 
 ## Two Pointers
 
-### Types of Two pointers
+<ul> Types of Two pointers </ul>
 #### Opposite Direction (Left => 0 && right => ary.size) 
 
 Two pointers start from both direction and move towards each other.
