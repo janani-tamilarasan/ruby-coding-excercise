@@ -270,9 +270,10 @@ result
 
 Note:
 If they ask
-**max/min of count -> increment the coubt
-length of subarray = (r-l+1)
-count of subarray = (r-l+1)
+**COUNT   → ans += window_size
+max/min of count -> increment the count
+LONGEST → ans = max(ans, window_size)
+length of subarray / window_size = (r-l+1)
 Trim the previus element using ary[i-k]**
 
 ### 🔹 Types of Sliding Window
@@ -331,9 +332,9 @@ while r < arr.length
 end
 
 ```
-#### 2️⃣ Atmost and atleast
+#### 2️⃣ Variable Size Window (Dynamic window)
 
-#### 2️⃣ Variable Size Window (Dynamic window) “Expand → break → shrink”
+#### 2️⃣ Atmost  “Expand → break → shrink”
 🔹 When
 ✔ Window size not fixed
 ✔ Condition-based problems
@@ -353,23 +354,49 @@ O(n) time, O(1) space
 - ✔ Shrink left when condition breaks
 
 ```ruby
-l = 0
+def at_most_k(arr, k)
+  left = 0
+  freq = Hash.new(0)
+  count = 0
 
-(0...arr.length).each do |r|
-  # add arr[r]
+  (0...arr.length).each do |right|
+    freq[arr[right]] += 1
 
-  while condition_invalid
-    # remove arr[l]
-    l += 1
+    while freq.size > k
+      freq[arr[left]] -= 1
+      freq.delete(arr[left]) if freq[arr[left]] == 0
+      left += 1
+    end
+
+    count += right - left + 1
   end
-//Finnd max/min
-end
-```
-[Longest Substring with At Most K Distinct Characters](https://takeuforward.org/data-structure/longest-substring-with-at-most-k-distinct-characters)
 
+  count
+end
+
+```
+#### 3️⃣  Atleast
+AtLeast K = Total Subarrays − AtMost (K − 1)
+
+📌 Use When
+
+“at least K distinct”
+
+“at least K ones / odds”
+
+“minimum frequency ≥ K”
+
+``` text
+def at_least_k(arr, k)
+  n = arr.length
+  total = n * (n + 1) / 2
+  total - at_most_k(arr, k - 1)
+end
+
+```
 
 #### 3️⃣ COUNT / FREQUENCY WINDOW -> Sliding_window + Hashing 
-![status](https://img.shields.io/badge/status-active-green) RIGHT ➜ ADD ➜ CHECK ➜ SHRINK ➜ COUNT
+**RIGHT ➜ ADD ➜ CHECK ➜ SHRINK ➜ COUNT**
 
 It can be use if any str and char are given
 In hash we wll store hash wuth count
@@ -398,24 +425,23 @@ def sliding_window(arr, k)
   ans = 0
 
   (0...arr.length).each do |right|
-    # 1️⃣ expand window
+    # expand window
     freq[arr[right]] += 1
 
-    # 2️⃣ shrink window if condition breaks
+    # shrink window if condition breaks
     while condition_broken(freq, k)
       freq[arr[left]] -= 1
       freq.delete(arr[left]) if freq[arr[left]] == 0
       left += 1
     end
 
-    # 3️⃣ update answer
+    # update answer
     ans += right - left + 1   # for COUNT problems
     # ans = [ans, right - left + 1].max  # for LONGEST problems
   end
 
   ans
 end
-
 ```
 
 
@@ -429,17 +455,34 @@ end
 **At least K = total − at most (K−1)**
 
 ```ruby
- at_most (K) -  at_most (K−1) 
+ def at_most_k(arr, k)
+  left = 0
+  freq = Hash.new(0)
+  count = 0
+
+  (0...arr.length).each do |right|
+    freq[arr[right]] += 1
+
+    while freq.size > k
+      freq[arr[left]] -= 1
+      freq.delete(arr[left]) if freq[arr[left]] == 0
+      left += 1
+    end
+
+    count += right - left + 1
+  end
+
+  count
+end
+
+def exactly_k(arr, k)
+  at_most_k(arr, k) - at_most_k(arr, k - 1)
+end
+
 
 ```
-[Binary subarray with sum](https://takeuforward.org/data-structure/binary-subarray-with-sum)
 
-[Count number of nice subarrays](https://takeuforward.org/data-structure/count-number-of-nice-subarrays)
-
-[Subarray with k different integers](https://takeuforward.org/data-structure/subarray-with-k-different-integers)
-
-
-#### 4️⃣ Replacement or flip
+#### 4️⃣  flip
 ```ruby
 l = 0
 zeros_count(replacement_coutnt) = 0
@@ -453,18 +496,35 @@ zeros_count(replacement_coutnt) = 0
 //Finnd max/min
 end
 ```
-[Max Consecutive Ones III](https://takeuforward.org/data-structure/max-consecutive-ones-iii)
 
+#### 4️⃣  Repalcement
+
+Expand → Count Bad → Shrink → Record
+Window − MaxFreq ≤ K
+#### “Replacement / Flip” trick
+### Use this formula:
+
+```ruby
+Replacements needed = window_size − max_frequency
+ Replacements needed = len − max_count
+
+
+Window valid if:
+
+window_size − max_freq ≤ K
+```
 
 others:
+### NOTE
+```ruby
+Binary array? Don’t use hash
+zeros / odds / sum
+```
+#### Total subarrays formula (needed for AtLeast)
+```ruby
+Total = n * (n + 1) / 2
 
-[longest repeating character replacement](https://takeuforward.org/data-structure/longest-repeating-character-replacement)
-
-[Maximum point you can obtain from cards](https://takeuforward.org/data-structure/maximum-point-you-can-obtain-from-cards)
-
-[miniumm Window Substring](https://takeuforward.org/data-structure/subarray-with-k-different-integers)
-
-
+```
 ----
 
 ## Xor
@@ -487,7 +547,7 @@ x ^ x = 0
 ## Hashing
 
 ## 🔁  HASHING
-
+-> string with chars
 ### ✅ When to Use
 - ✔ Frequency / count
 - ✔ Duplicates / unique
@@ -497,6 +557,10 @@ x ^ x = 0
 - ✔ Unsorted array
 ### 👉 **Time / Space**
 O(n) time, O(k) space 
+#### 1️⃣ Hashing with count
+#### 1️⃣ Hashing with index
+NOTE:
+If dececremt nt th vvalue is zer, we can delete it
 
 ```ruby
 # Initialize hash or set
