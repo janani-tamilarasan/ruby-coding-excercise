@@ -263,12 +263,17 @@ result
 - ✔ At most / At least / Exactly / Without
 - ✔ Constraint that can break and be fixed
 
+#### DataStructure
+  Only Used in array /strings
+  
 ❌ **Do NOT use if the problem is not continuous**
+
 Note:
 If they ask
 **max/min of count -> increment the coubt
 length of subarray = (r-l+1)
-count of subarray = (r-l+1)**
+count of subarray = (r-l+1)
+Trim the previus element using ary[i-k]**
 
 ### 🔹 Types of Sliding Window
 
@@ -363,11 +368,22 @@ end
 [Longest Substring with At Most K Distinct Characters](https://takeuforward.org/data-structure/longest-substring-with-at-most-k-distinct-characters)
 
 
-#### 3️⃣ COUNT / FREQUENCY WINDOW -> Sliding_window + Hashhing
+#### 3️⃣ COUNT / FREQUENCY WINDOW -> Sliding_window + Hashing 
+<span style="color:red">RIGHT ➜ ADD ➜ CHECK ➜ SHRINK ➜ COUNT</span>
+
 It can be use if any str and char are given
 In hash we wll store hash wuth count
+
 🔹 When
-✔ Characters or numbers frequency matters
+ -  You need count / frequency
+ -  
+ - Subarray / substring
+ - 
+ - Continuous window
+ - 
+ - Condition depends on frequency
+ - 
+
 ### 👉 **Time / Space**
 O(n) time, O(m + n ) hasing spacespace
 
@@ -375,9 +391,33 @@ O(n) time, O(m + n ) hasing spacespace
 
 “Window + HashMap”
 
-[Length of Longest Substring without Repeating Characters](https://takeuforward.org/data-structure/length-of-longest-substring-without-any-repeating-character)
+```text
+def sliding_window(arr, k)
+  left = 0
+  freq = Hash.new(0)
+  ans = 0
 
-[Number of substring containing all three characters](https://takeuforward.org/data-structure/number-of-substring-containing-all-three-characters)
+  (0...arr.length).each do |right|
+    # 1️⃣ expand window
+    freq[arr[right]] += 1
+
+    # 2️⃣ shrink window if condition breaks
+    while condition_broken(freq, k)
+      freq[arr[left]] -= 1
+      freq.delete(arr[left]) if freq[arr[left]] == 0
+      left += 1
+    end
+
+    # 3️⃣ update answer
+    ans += right - left + 1   # for COUNT problems
+    # ans = [ans, right - left + 1].max  # for LONGEST problems
+  end
+
+  ans
+end
+
+```
+
 
 #### 4️⃣ Exactly k element
 
