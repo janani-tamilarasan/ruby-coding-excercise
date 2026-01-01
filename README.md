@@ -904,21 +904,20 @@ O(log n) time, O(n) space
        
 ```ruby
 → low = 0, high = given range or max of range
-
+ans = -1
 def binary_search_range(low, high)
   while low <= high
     mid = low + (high - low) / 2
 
-    if matches(mid)
-      return mid          # 🎯 found exact match
-    elsif mid < target
+    if matches(mid) or mid <= n or some codintion
+      ans = mid          # 🎯 found exact match
       low = mid + 1       # move right
     else
       high = mid - 1      # move left
     end
   end
 
-  -1
+  ans
 end
 
 ```
