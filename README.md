@@ -369,7 +369,7 @@ end
 
 
 #### 3️⃣ COUNT / FREQUENCY WINDOW -> Sliding_window + Hashing 
-<span style="color:red">RIGHT ➜ ADD ➜ CHECK ➜ SHRINK ➜ COUNT</span>
+![status](https://img.shields.io/badge/status-active-green) RIGHT ➜ ADD ➜ CHECK ➜ SHRINK ➜ COUNT
 
 It can be use if any str and char are given
 In hash we wll store hash wuth count
