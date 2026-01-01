@@ -17,7 +17,8 @@
 ## Two Pointers
 
 <u><b> Types of Two pointers </b></u>
-#### Opposite Direction (Left => 0 && right => ary.size) 
+
+### Opposite Direction (Left => 0 && right => ary.size) 
 
 Two pointers start from both direction and move towards each other.
 Left always increment
@@ -47,7 +48,8 @@ while l < r
 end
 ```
 
-#### <u> Same Direction with diffrent index (Left => 0 && right => 1) </u>
+### VARIANT 1: Same Direction with diffrent index (Left => 0 && right => 1)
+
 Two pointers start from same direction different index.
 Left, Right always increment
 Right use to process/compare the possible conditions
@@ -55,8 +57,9 @@ Left is used to store/swap/any  If possible condtions are statisfied
 
 📌 **Keywords**
 - ✔ Un-Sorted 
-- ✔ Pairs / triplets
-- ✔ Symmetric problems
+- ✔ Remove or Move or Replace or swap
+- ✔ Comparision
+- In place modification
 
 ### 👉 **Time / Space**
 O(n) time, O(1) space 
@@ -71,18 +74,110 @@ while l < r
   if condition
     // Swap if needed or possible actions
     l += 1
-  else
-    r -= 1
   end
+Manipualte r+=1
 end
 ```
 
-#### Slow and Fast Same Direction(Tortise and rare)(Fast scans, Slow stores) 
+### VARIANT 2: Same Direction with different index (Left => 1 && right => 2)
+Store the First value or index 0 at any variable as max or min or some 
+Two pointers start from same direction different index.
+Left, Right always increment
+Right use to process/compare the possible conditions
+Left is used to store/swap/any  If possible condtions are statisfied
+
+📌 **Keywords**
+- ✔ Un-Sorted 
+- ✔ Move the zeros at end
+- ✔ Dealing with min and max at same time
+
+### 👉 **Time / Space**
+O(n) time, O(1) space 
+
+```ruby
+some_vaiable or max or min = ary[o]
+l = 1
+r = 2
+
+while l < r
+  # condition (compare with r with some_vaiable)
+
+  if condition
+    // Swap if needed or possible actions
+    l += 1
+  end
+manipultate r r+=1
+end
+```
+
+
+### VARIANT 23: Same Direction with different index + sort (Left => 0 && right => 1) 
+ (“Sort → Fix → Sweep”)
+If ary is un sorted , then sort the value
+Two pointers start from same direction different index.
+Left, Right always increment
+Right use to process/compare the possible conditions
+Left is used to store/swap/any  If possible condtions are statisfied
+
+📌 **Keywords**
+- ✔ Un-Sorted 
+- ✔ Target sum
+  
+🔑 Use when:
+2-sum / 3-sum / closest
+
+minimize / maximize difference
+
+#### 🧩 Pattern Steps
+✔ Sort
+
+✔ Fix one
+
+### 👉 **Time / Space**
+O(nlogn) time, O(1) space 
+
+```ruby
+l = 0
+r = 1
+
+while r < ary.length
+  # ary.sort! -> sort the given ary
+  # condition (compare with r with some_vaiable)
+
+  if condition
+    // Swap if needed or possible actions
+    l += 1
+  end
+manipultate r r+=1
+end
+```
+
+
+### Slow and Fast Same Direction(Tortise and rare)(Fast scans, Slow stores) 
 Both pointers move forward, but at different speeds.
+#### Variant 1:
+  Slow  = 0 -> +1 => only forward 1
+  Fast = ++2
+#### Variant 2:
+  Slow  = 0 -> ++2 -< forward 2 at all times
+  Fast = ++2
+  
 📌 **Keywords**
 - ✔ Remove / filter elements 
 - ✔ In-place modification
 - ✔ Maintain order
+- ✔ Alternate Number
+- ✔ even or order
+-  ✔ cycle / loop
+- ✔ linked list loop
+-  ✔ detect duplicate
+- ✔ Values are in a fixed range (1…n)
+- ✔ find middle
+
+### 👉 **Time / Space**
+O(nlogn) time, O(1) space 
+
+### VARIANT 1
 
 ```ruby
 slow = 0
@@ -98,11 +193,34 @@ end
 # Result is usually in ary[0...slow]
 
 ```
+#### VARIANT 2:
 
-[Slow and Fast Same Direction Problems](problems/slow_and_fast.md)
+```text
+slow → 1 step
+fast → 2 steps
 
-#### Merge pointers (“Compare → pick smaller → move pointer”)
+If loop exists → fast catches slow
+```
+```ruby
+slow = head
+fast = head
+
+while fast && fast.next
+  slow = slow.next
+  fast = fast.next.next
+
+  return true if slow == fast
+end
+
+false
+```
+
+
+### Merge pointers (“Compare → pick smaller → move pointer”)
 Two pointers traverse two different sorted arrays.
+ary1 -> start from end index (r)
+ary2 -> start from start index (l)
+
 📌 **Keywords**
 - ✔ Merge or compare two sorted arrays
 ```ruby
@@ -133,49 +251,6 @@ end
 
 result
 ```
-[ Merge pointers Problems](problems/merge_pointers.md)
-
-#### FAST & SLOW POINTERS(Hare and tortise algorithm) Slow -> 1 and Fast -> 2 steps
-📌 **Keywords**
-- ✔ cycle / loop
-- ✔ linked list loop
--  ✔ detect duplicate
-- ✔ Values are in a fixed range (1…n)
-- ✔ find middle
-### Pattern
-```text
-slow → 1 step
-fast → 2 steps
-
-If loop exists → fast catches slow
-```
-```ruby
-slow = head
-fast = head
-
-while fast && fast.next
-  slow = slow.next
-  fast = fast.next.next
-
-  return true if slow == fast
-end
-
-false
-```
-
-#### SORT + TWO POINTERS (“Sort → Fix → Sweep”)
-🔑 Use when:
-2-sum / 3-sum / closest
-minimize / maximize difference
-
-#### 🧩 Pattern Steps
-✔ Sort
-✔ Fix one
-✔ Two pointer on rest
-
-🧠 Memory line:
-
-“Sort → Fix → Sweep”
 
 ----
 
