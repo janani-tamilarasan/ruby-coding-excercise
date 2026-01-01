@@ -9,7 +9,7 @@
 - [Boyer Moore Majority Vote Algorithm](#boyer–moore-majority-vote-algorithm)
 - [Kadanes Algorithm](#kadanes-algorithm)
 - [Next Permutation](#next-permutation)
-
+- [Binary Search](#binary-search)
 ----
 
 # Patterns
@@ -855,55 +855,263 @@ Dip → Just bigger → Swap → Reverse suffix
 ## Binary Search
 
 ## 🔁 Binary search
- ✅ 1. Search space is sorted
- ✅ 2. Any range like range like 1..10^9
- ✅ 3. Decision is monotonic ex: 
- Can Koko finish eating at speed = mid?
-Can we ship packages in mid days?
-Can we allocate books with max pages = mid?
 
 ✅ When to Use Binary Search
- 1️⃣ Data is sorted
-  1️⃣ Answer space is numeric and ordered
-Condition is monotonic (MOST IMPORTANT)
+
+	 ✅ 1. Search space is sorted
+	 ✅ 2. Any range like range like 1..10^9
+	 ✅ 3. Decision is monotonic ex: 
+	 Can Koko finish eating at speed = mid?
+	Can we ship packages in mid days?
+	Can we allocate books with max pages = mid?
+	✅ 3. Search in Rotation 
+	✅ 3. Find/Match/Search in ary
+
+💥💥💥💥
+#### Data structure
+Array -> if sorted
+### Note
+If given array is not sort sort using sort!
+#### Elimination
+Eliminate Right half = high = mid - 1 or mid
+Eliminate left half = low = mid -+ 1 or mid
+💥💥💥💥
 
 ❌ When NOT to Use Binary Search
 
-❌ Unsorted data with no order
-❌ Condition is random (true/false jumps)
-❌ Need all results, not one
-❌ No monotonic behavior
+	❌ Unsorted data with no order
+	❌ Condition is random (true/false jumps)
+	❌ Need all results, not one
+	❌ No monotonic behavior
 
-### Template
-low = minimum_possible
-high = maximum_possible
-ans = high
+### 👉 **Time / Space**
+O(log n) time, O(n) space 
 
-while low <= high
-  mid = (low + high) / 2
+### 🤔 Analysis
+ 1. Check array is sorted
+ 2. Pattern Identification
+ 3. Identify the range ie) low and high initaila value
+ 4. Analysise possible condition
+ 5. If mid satisfy the condition how are we storing in anser
+ 6. Identify which to elimatnate right half and left half
 
-  if possible?(mid)
-    ans = mid
-    high = mid - 1 or  low = mid + 1
-  else
-    low = mid + 1 or low = mid + 1
+### 1️⃣ With Range Given (low = 0, high = given range or max of range)
+
+#### ✅ When to Use 
+  - 1. The problem asks for min / max possible value
+  - 2. Answer is not an index, but a number
+  - 3. There is a YES / NO check function
+       
+```ruby
+→ low = 0, high = given range or max of range
+
+def binary_search_range(low, high)
+  while low <= high
+    mid = low + (high - low) / 2
+
+    if matches(mid)
+      return mid          # 🎯 found exact match
+    elsif mid < target
+      low = mid + 1       # move right
+    else
+      high = mid - 1      # move left
+    end
   end
+
+  -1
 end
 
-ans
-### Template (Using range)
+```
 
+### 2️⃣ Index-Based Partition (low = 0, high = n-1)
+
+ ### When to Use 
+ - ✔ Arrays are sorted
+ - ✔ You are asked for median / k-th element
+ - ✔ You must split arrays into left and right parts
+ - ✔ Condition compares left max ≤ right min
+
+``` text
+	→ low = 0, high = n-1
+def partition_index(arr)
+  left = 0
+  right = arr.length - 1
+  ans = -1
+
+  while left <= right
+    mid = (left + right) / 2
+
+    if possibkele_condition(mid)   # check if mid satisfies the partition condition
+      ans = mid         # possible answer
+      right = mid - 1  or  left = mid + 1  # look Elimination
+    else
+      right = mid - 1  or  left = mid + 1   # look Elimination
+    end
+  end
+
+  ans
+end
+
+```
+<img width="426" height="470" alt="image" src="https://github.com/user-attachments/assets/49a66e3d-5ae2-4e25-81f3-579dcda25272" />
+
+### 3️⃣ Monotonic condition
+
+#### 1️⃣ Answer-Based (Range) — Partition / Capacity Problems (Range → Check mid → If valid → Record → Move high/low)
+
+ ### When to Use
+	
+	- Problem asks for min / max possible value
+	
+	- You can check if a given value is feasible
+	
+#### Examples:
+	
+	Minimum largest sum to split array
+	
+	Minimum speed to finish bananas in H hours
+	
+	Ship packages within D days
+
+	Aggressive cows (max min distance)
+	
+```ruby
+→ low = max(arr), high = sum(arr) or max(arr)
+# low  = minimum value that could work
+# high = maximum value that could work
+
+low = max(arr)          # best-case single element
+high = sum(arr)         # worst-case sum of all elements
+# or sometimes high = max(arr) depending on the problem
+
+def answer_based_binary_search(low, high)
+  ans = -1
+
+  while low <= high
+    mid = low + (high - low) / 2
+
+    if valid(mid)          # check if mid is feasible
+      ans = mid            # record possible answer
+      high = mid - 1       # try smaller for min-answer
+    else
+      low = mid + 1        # need bigger value
+    end
+  end
+
+  ans
+end
+
+```
+
+#### 2️⃣  Answer-Based — Rate / Speed Problems (Range → Check rate/speed → If feasible → Record → Move high/low)
+```ruby
+→ low = 1, high = max-min
+# low  = minimum possible speed
+# high = maximum possible speed
+
+low = 1                # minimum possible rate
+high = max(arr)         # maximum value in array (largest pile / job)
+def can_finish(speed)
+  hours_needed = 0
+  arr.each do |pile|
+    hours_needed += (pile.to_f / speed).ceil
+  end
+  hours_needed <= H   # H = total allowed hours
+end
+
+def min_speed(arr, H)
+  low = 1
+  high = arr.max
+  ans = -1
+
+  while low <= high
+    mid = low + (high - low) / 2
+
+    if can_finish(mid)
+      ans = mid
+      high = mid - 1   # try smaller speed
+    else
+      low = mid + 1    # need faster speed
+    end
+  end
+
+  ans
+end
+
+```
+#### 3️⃣ Answer-Based — Distance / Time Problems (Range → Check distance/time → If feasible → Record → Move high/low)
+
+```ruby
+🔧 Step 1 — Initialize Range
+# low  = minimum possible distance / time
+# high = maximum possible distance / time
+
+# Examples:
+
+# Aggressive Cows
+low = 1
+high = positions.max - positions.min
+
+# Ship Packages / Tasks
+low = max(weights)      # minimum capacity / time per day
+high = weights.sum      # maximum possible
+
+
+💡 Always define low as best-case, high as worst-case
+```
+```ruby
+🔧 Step 2 — Feasibility Check
+def can_place(mid)
+  count = 1
+  last_position = positions[0]
+
+  positions[1..-1].each do |pos|
+    if pos - last_position >= mid
+      count += 1
+      last_position = pos
+    end
+  end
+
+  count >= cows   # number of cows or tasks to place
+end
+
+
+Modify according to problem — distance, time, or intervals
+```
+```ruby
+🔧 Step 3 — Generic Binary Search Template
+def max_min_distance(positions, cows)
+  positions.sort!
+  low = 1
+  high = positions.max - positions.min
+  ans = -1
+
+  while low <= high
+    mid = low + (high - low) / 2
+
+    if can_place(mid)
+      ans = mid
+      low = mid + 1    # try larger distance for max
+    else
+      high = mid - 1
+    end
+  end
+
+  ans
+end
+
+
+For min time / capacity, shrink high instead of expanding low
+```
+
+<img width="616" height="223" alt="image" src="https://github.com/user-attachments/assets/e5260ef3-b753-49a6-bdb1-793ffb9309bd" />
+
+### Extras
 <img width="484" height="338" alt="image" src="https://github.com/user-attachments/assets/2fb1a646-c8d8-4e37-bae3-f669370eaf9d" />
 <img width="428" height="267" alt="image" src="https://github.com/user-attachments/assets/56627df0-8662-4f1e-9349-d0b14cc2f132" />
 
-### Index-Based Partition (Binary Search on Index) — TEMPLATE
 
- ### When to Use 
-✔ Arrays are sorted
-✔ You are asked for median / k-th element
-✔ You must split arrays into left and right parts
-✔ Condition compares left max ≤ right min
-<img width="426" height="470" alt="image" src="https://github.com/user-attachments/assets/49a66e3d-5ae2-4e25-81f3-579dcda25272" />
+
 ### Question to ask yourself	#
 If YES →
 Are we partitioning an array?	low = max(arr)
@@ -912,26 +1120,9 @@ Is answer a speed / rate / divisor?	low = 1
 Is zero a valid solution?	low = 0
 1. Index-Based Binary Search (Classic)
 Am I searching an index?
-→ low = 0, high = n-1
-
-2. Answer-Based (Range) — Partition / Capacity Problems
-Am I minimizing a maximum (capacity/partition)?
-→ low = max(arr), high = sum(arr)
-
-3. Answer-Based — Rate / Speed Problems
-Am I finding a rate/speed?
-→ low = 1
-4. Maximize Minimum Distance (Aggressive Cows)
-Am I maximizing minimum distance?
-→ low = 1, high = max-min
-
-Is zero allowed?
-→ maybe low = 0
-
-Capacity problems → max(arr)
-Speed problems    → 1
 
 ----
+
 ## Binary Tree
 
 ## 🌳 Binary Tree 
