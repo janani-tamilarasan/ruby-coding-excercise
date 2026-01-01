@@ -16,42 +16,66 @@
 
 ## Two Pointers
 
-### ✅ When to Use
-- ✔ Sorted 
-- ✔ Comparision
-- ✔ Pairs / triplets
-- ✔ In-place modification
-- ✔ Left + Right comparison
-- ✔ Remove two loops to one loop ie) 0(n2) => 0(n)
-
-### 👉 **Time / Space**
-O(n) time, O(1) space
-
 ### Types of Two pointers
-#### Opposite Direction (L →        ← R) 
-Two pointers start from both ends and move towards each other.
+#### Opposite Direction (Left => 0 && right => ary.size) 
+
+Two pointers start from both direction and move towards each other.
+Left always increment
+Right always decrement
+
 📌 **Keywords**
 - ✔ Sorted 
 - ✔ Pairs / triplets
 - ✔ Symmetric problems
+
+### 👉 **Time / Space**
+O(n) time, O(1) space 
 
 ```ruby
 l = 0
 r = ary.length - 1
 
 while l < r
-  # 1. Use ary[l] and ary[r]
-  # 2. Check condition
-  # 3. Move pointers accordingly
+  # condition (compare with l and r value  do actions accordingly like swap)
 
   if condition
+    // Swap if needed or possible actions
     l += 1
   else
     r -= 1
   end
 end
 ```
- [Opposite Direction Problems](problems/opposite_direction.md)
+
+#### <u> Same Direction with diffrent index (Left => 0 && right => 1) </u>
+Two pointers start from same direction different index.
+Left, Right always increment
+Right use to process/compare the possible conditions
+Left is used to store/swap/any  If possible condtions are statisfied
+
+📌 **Keywords**
+- ✔ Un-Sorted 
+- ✔ Pairs / triplets
+- ✔ Symmetric problems
+
+### 👉 **Time / Space**
+O(n) time, O(1) space 
+
+```ruby
+l = 0
+r = ary.length - 1
+
+while l < r
+  # condition (compare with l and r value  do actions accordingly like swap)
+
+  if condition
+    // Swap if needed or possible actions
+    l += 1
+  else
+    r -= 1
+  end
+end
+```
 
 #### Slow and Fast Same Direction(Tortise and rare)(Fast scans, Slow stores) 
 Both pointers move forward, but at different speeds.
