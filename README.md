@@ -1109,7 +1109,19 @@ For min time / capacity, shrink high instead of expanding low
 <img width="484" height="338" alt="image" src="https://github.com/user-attachments/assets/2fb1a646-c8d8-4e37-bae3-f669370eaf9d" />
 <img width="428" height="267" alt="image" src="https://github.com/user-attachments/assets/56627df0-8662-4f1e-9349-d0b14cc2f132" />
 
-
+### 💡💡
+  #### Calculate ceil
+   (ele.to_f/mid).ceil -> alway use to_f in ceilt -> it can be used in possible_warys or calucalted
+#### Calculate floor
+   (ele/mid).ceil -> No need to  use to_f in flooer -> it can be used in mid
+#### Elimination on larger side(Right)
+```text
+high = mid - 1
+```
+#### Elimination on smaller side(Left)
+``` text
+low = mid + 1
+```
 
 ### Question to ask yourself	#
 If YES →
