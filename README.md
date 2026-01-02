@@ -1103,6 +1103,10 @@ end
 For min time / capacity, shrink high instead of expanding low
 ```
 
+value       low       high
+speed/rate  1         max(ary)
+days        min(ary)  max(ary)
+
 <img width="616" height="223" alt="image" src="https://github.com/user-attachments/assets/e5260ef3-b753-49a6-bdb1-793ffb9309bd" />
 
 ### Extras
