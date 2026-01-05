@@ -2,6 +2,7 @@
 # 📌 CHEATSHEET - Table of Contents
 
 - [No of Islands](#no-of-islands)
+- [Max Area of Island](#max-area-of-island)
 
 ## No of Islands
 
@@ -18,6 +19,17 @@ Loop every cell
  │    ├─ DFS/BFS from here(with horizontal, and vertical)
  │    └─ Mark all connected 1s → 0 (sink island)
  └─ Continue
+
+DFS FLOW
+
+DFS(i, j)
+ ├─ If out of bounds → return 0
+ ├─ If grid[i][j] == 0 → return 0
+ ├─ Mark grid[i][j] = 0 (visited)
+ ├─  DFS(down)
+ ├─  DFS(up)
+ ├─  DFS(right)
+ └─  DFS(left)
 ```
 #### Code:
 ```ruby
@@ -67,6 +79,75 @@ end
 #### Time/Space Complexity
 O(m * n)
 O(m * n)
+
+---
+
+## Max Area of Island
+GRID → LAND → DFS → MARK → COUNT / MAX
+[https://leetcode.com/problems/number-of-islands/](https://leetcode.com/problems/max-area-of-island/)
+
+#### Techniques: DFS
+
+####  Algorithm
+
+```text
+Loop every cell (i, j)
+ ├─ If grid[i][j] == 1
+ │    ├─ area = DFS(i, j)
+ │    ├─ max_area = max(max_area, area)
+ │    └─ Continue scanning
+ └─ Continue
+
+DFS FLOW
+
+DFS(i, j)
+ ├─ If out of bounds → return 0
+ ├─ If grid[i][j] == 0 → return 0
+ ├─ Mark grid[i][j] = 0 (visited)
+ ├─ area = 1
+ ├─ area += DFS(down)
+ ├─ area += DFS(up)
+ ├─ area += DFS(right)
+ └─ area += DFS(left)
+
+```
+#### Code:
+```ruby
+def max_area_of_island(grid)
+    rows = grid.length
+    columns = grid[0].length
+    max_len = 0
+    (0...rows).each do |i|
+      (0...columns).each do |j|
+        if(grid[i][j] == 1)
+            max_len = [max_len, dfs(grid,i,j)].max
+        end
+       end
+    end
+    max_len
+end
+
+ def dfs(grid,i,j)
+    return 0 if(i <0 || j <0)
+    return 0 if(i >= grid.length || j >= grid[0].length)
+    return 0 if(grid[i][j] == 0)
+
+    grid[i][j] = 0
+    len = 1
+    len += dfs(grid,i, j+1)
+    len += dfs(grid,i, j-1)
+    len += dfs(grid,i+1, j)
+    len += dfs(grid,i-1, j)
+    len
+ end
+```
+
+#### Time/Space Complexity
+O(m * n)
+O(m * n)
+
+**NOTE**
+<img width="526" height="181" alt="image" src="https://github.com/user-attachments/assets/ca03849a-218e-4bdf-ba19-91c7e4d75414" />
 
 ---
 
