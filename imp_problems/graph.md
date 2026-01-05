@@ -84,6 +84,7 @@ O(m * n)
 
 ## Max Area of Island
 GRID → LAND → DFS → MARK → COUNT / MAX
+
 [https://leetcode.com/problems/number-of-islands/](https://leetcode.com/problems/max-area-of-island/)
 
 #### Techniques: DFS
@@ -150,6 +151,7 @@ O(m * n)
 <img width="526" height="181" alt="image" src="https://github.com/user-attachments/assets/ca03849a-218e-4bdf-ba19-91c7e4d75414" />
 
 ---
+
 
 
 
