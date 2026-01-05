@@ -4,6 +4,8 @@
 - [No of Islands](#no-of-islands)
 - [Max Area of Island](#max-area-of-island)
 - [Word Ladder](#word-ladder)
+- [Rotting Oranges](#rotting-oranges)
+- [Pacific Atlantic Water Flow](#pacific-atlantic-water-flow)
 
 ## No of Islands
 
@@ -225,6 +227,176 @@ While queue not empty
 O(m * 256)
 O(m)
 
+---
+
+## Rotting Oranges
+
+[https://leetcode.com/problems/rotting-oranges/description/](https://leetcode.com/problems/rotting-oranges/description/)
+
+#### Techniques: BFS
+
+#### Data Structure: 
+   Queue -> For proccesing transforamation
+   
+####  Algorithm
+```text
+Count all oranges
+Push all rotten into queue
+
+While queue not empty
+ ├─ Process current level
+ ├─ Rot neighbors (4 directions)
+ ├─ Push newly rotten
+ └─ Increment minute
+
+
+```
+#### Code:
+```ruby
+# @param {Integer[][]} grid
+# @return {Integer}
+def oranges_rotting(grid)
+  return 0 if grid.empty?
+
+  rows = grid.length
+  cols = grid[0].length
+
+  queue = []
+  total = 0
+  rotten_count = 0
+
+  # Initialize
+  (0...rows).each do |i|
+    (0...cols).each do |j|
+      total += 1 if grid[i][j] != 0
+      queue << [i, j] if grid[i][j] == 2
+    end
+  end
+
+  directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+  minutes = 0
+
+  # BFS
+  while !queue.empty?
+    size = queue.length
+    rotten_count += size
+
+    size.times do
+      x, y = queue.shift
+
+      directions.each do |dx, dy|
+        nx = x + dx
+        ny = y + dy
+
+        next if nx < 0 || ny < 0 || nx >= rows || ny >= cols
+        next if grid[nx][ny] != 1
+
+        grid[nx][ny] = 2
+        queue << [nx, ny]
+      end
+    end
+
+    minutes += 1 if !queue.empty?
+  end
+
+  total == rotten_count ? minutes : -1
+end
+
+# Driver code
+grid = [
+  [2, 1, 1],
+  [1, 1, 0],
+  [0, 1, 1]
+]
+
+result = oranges_rotting(grid)
+puts "Minimum Number of Minutes Required #{result}"
+
+```
+---
+
+## Pacific Atlantic Water Flow
+
+[https://leetcode.com/problems/pacific-atlantic-water-flow/description/](https://leetcode.com/problems/pacific-atlantic-water-flow/description/)
+
+#### Techniques: BFS
+
+#### Data Structure: 
+   Queue -> For proccesing transforamation
+   
+####  Algorithm
+```text
+Count all oranges
+Push all rotten into queue
+
+While queue not empty
+ ├─ Process current level
+ ├─ Rot neighbors (4 directions)
+ ├─ Push newly rotten
+ └─ Increment minute
+```
+
+#### Code:
+```ruby
+# @param {Integer[][]} grid
+# @return {Integer}
+def oranges_rotting(grid)
+  return 0 if grid.empty?
+
+  rows = grid.length
+  cols = grid[0].length
+
+  queue = []
+  total = 0
+  rotten_count = 0
+
+  # Initialize
+  (0...rows).each do |i|
+    (0...cols).each do |j|
+      total += 1 if grid[i][j] != 0
+      queue << [i, j] if grid[i][j] == 2
+    end
+  end
+
+  directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+  minutes = 0
+
+  # BFS
+  while !queue.empty?
+    size = queue.length
+    rotten_count += size
+
+    size.times do
+      x, y = queue.shift
+
+      directions.each do |dx, dy|
+        nx = x + dx
+        ny = y + dy
+
+        next if nx < 0 || ny < 0 || nx >= rows || ny >= cols
+        next if grid[nx][ny] != 1
+
+        grid[nx][ny] = 2
+        queue << [nx, ny]
+      end
+    end
+
+    minutes += 1 if !queue.empty?
+  end
+
+  total == rotten_count ? minutes : -1
+end
+
+# Driver code
+grid = [
+  [2, 1, 1],
+  [1, 1, 0],
+  [0, 1, 1]
+]
+
+result = oranges_rotting(grid)
+puts "Minimum Number of Minutes Required #{result}"
+```
 ---
 
 
