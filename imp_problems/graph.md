@@ -1,11 +1,9 @@
 
 # 📌 CHEATSHEET - Table of Contents
 
-- [Graph](#graph)
+- [No of Islands](#no-of-islands)
 
-## Graph
-
-### No of Islands
+## No of Islands
 
 https://leetcode.com/problems/number-of-islands/
 
@@ -71,6 +69,7 @@ O(m * n)
 O(m * n)
 
 ---
+
 
 
 
