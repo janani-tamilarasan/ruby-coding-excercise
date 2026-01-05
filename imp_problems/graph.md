@@ -3,6 +3,7 @@
 
 - [No of Islands](#no-of-islands)
 - [Max Area of Island](#max-area-of-island)
+- [Word Ladder](#word-ladder)
 
 ## No of Islands
 
@@ -151,6 +152,81 @@ O(m * n)
 <img width="526" height="181" alt="image" src="https://github.com/user-attachments/assets/ca03849a-218e-4bdf-ba19-91c7e4d75414" />
 
 ---
+
+## Word Ladder
+
+[https://leetcode.com/problems/word-ladder/description/](https://leetcode.com/problems/word-ladder/description/)
+
+#### Techniques: BFS
+
+#### Data Structure: 
+   Set(stroring unique items for stroing wordslist)  
+   Queue -> For proccesing transforamation
+####  Algorithm
+
+- Check if endWord is present in the wordlist
+   - If no return 0
+ - Store the word list in the hash_set -> with set
+ - Add the start_word with depth 1 in queue
+- Step 2
+  - Process the First item in queue
+    - Remove first_item from hash_set
+    - Then get the first item and matches with all posible a-z string with each positio
+   
+    - if matches -> remove from the hash_set and add it in queue at last with increment the deptt
+    - Continue untill it matches
+   
+    - 
+```text
+Start word → Queue
+Word list → Set (for fast lookup)
+
+While queue not empty
+ ├─ Take word + steps
+ ├─ If word == target
+ │    └─ return steps
+ ├─ For each character position
+ │    ├─ Try a–z
+ │    ├─ Form new word
+ │    ├─ If new word in Set
+ │    │    ├─ Remove from Set (visited)
+ │    │    └─ Push to queue (steps + 1)
+ └─ Continue
+
+```
+#### Code:
+```ruby
+ dict = word_list.to_set
+   return 0 unless dict.include?(end_word)
+
+    queue = [[begin_word, 1]]
+    dict.delete(begin_word)
+
+    while !queue.empty?
+        word, steps = queue.shift
+
+        return steps if word == end_word
+
+        (0...word.length).each do |i|
+        ('a'..'z').each do |ch|
+            new_word = word[0...i] + ch + word[i+1..-1]
+
+            if dict.include?(new_word)
+            dict.delete(new_word)
+            queue << [new_word, steps + 1]
+            end
+        end
+        end
+    end
+  return 0
+```
+
+#### Time/Space Complexity
+O(m * 256)
+O(m)
+
+---
+
 
 
 
