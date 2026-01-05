@@ -10,6 +10,7 @@
 - [Kadanes Algorithm](#kadanes-algorithm)
 - [Next Permutation](#next-permutation)
 - [Binary Search](#binary-search)
+- [Linked List](#linked-list)
 ----
 
 # Patterns
@@ -1298,6 +1299,15 @@ Left / Right View
 <img width="549" height="322" alt="image" src="https://github.com/user-attachments/assets/884313fd-e102-4773-a24a-ea819197ba8d" />
 
 ----
+
+
+## Linked List
+
+## Linked List
+
+### Slow and tortise algorithm
+
+---
 
 ### 📝 NOTE (IMPROVEMENT)
 
