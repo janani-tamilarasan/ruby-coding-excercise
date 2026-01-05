@@ -5,7 +5,7 @@
 - [Max Area of Island](#max-area-of-island)
 - [Word Ladder](#word-ladder)
 - [Rotting Oranges](#rotting-oranges)
-- [Pacific Atlantic Water Flow](#pacific-atlantic-water-flow)
+- [Flood Fill Algorithm - Graphs](#flood-fill-algorithm-graphs)
 
 ## No of Islands
 
@@ -315,89 +315,63 @@ puts "Minimum Number of Minutes Required #{result}"
 ```
 ---
 
-## Pacific Atlantic Water Flow
+## Flood Fill Algorithm - Graphs
 
-[https://leetcode.com/problems/pacific-atlantic-water-flow/description/](https://leetcode.com/problems/pacific-atlantic-water-flow/description/)
+[[https://leetcode.com/problems/pacific-atlantic-water-flow/description/](https://takeuforward.org/graph/flood-fill-algorithm-graphs)
 
 #### Techniques: BFS
 
-#### Data Structure: 
-   Queue -> For proccesing transforamation
    
 ####  Algorithm
 ```text
-Count all oranges
-Push all rotten into queue
+Start (sr, sc)
+ ├─ Get starting color
+ ├─ DFS / BFS in 4 directions
+ │    ├─ If same color
+ │    ├─ Change to new color
+ │    └─ Continue
+ └─ Done
+Start (sr, sc)
+ ├─ Get starting color
+ ├─ DFS / BFS in 4 directions
+ │    ├─ If same color
+ │    ├─ Change to new color
+ │    └─ Continue
+ └─ Done
 
-While queue not empty
- ├─ Process current level
- ├─ Rot neighbors (4 directions)
- ├─ Push newly rotten
- └─ Increment minute
 ```
 
 #### Code:
 ```ruby
-# @param {Integer[][]} grid
-# @return {Integer}
-def oranges_rotting(grid)
-  return 0 if grid.empty?
+# @param {Integer[][]} image
+# @param {Integer} sr
+# @param {Integer} sc
+# @param {Integer} color
+# @return {Integer[][]}
+def flood_fill(image, sr, sc, color)
+  start_color = image[sr][sc]
+  return image if start_color == color   # nothing to change
 
-  rows = grid.length
-  cols = grid[0].length
-
-  queue = []
-  total = 0
-  rotten_count = 0
-
-  # Initialize
-  (0...rows).each do |i|
-    (0...cols).each do |j|
-      total += 1 if grid[i][j] != 0
-      queue << [i, j] if grid[i][j] == 2
-    end
-  end
-
-  directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
-  minutes = 0
-
-  # BFS
-  while !queue.empty?
-    size = queue.length
-    rotten_count += size
-
-    size.times do
-      x, y = queue.shift
-
-      directions.each do |dx, dy|
-        nx = x + dx
-        ny = y + dy
-
-        next if nx < 0 || ny < 0 || nx >= rows || ny >= cols
-        next if grid[nx][ny] != 1
-
-        grid[nx][ny] = 2
-        queue << [nx, ny]
-      end
-    end
-
-    minutes += 1 if !queue.empty?
-  end
-
-  total == rotten_count ? minutes : -1
+  dfs(image, sr, sc, start_color, color)
+  image
 end
 
-# Driver code
-grid = [
-  [2, 1, 1],
-  [1, 1, 0],
-  [0, 1, 1]
-]
+def dfs(image, r, c, start_color, new_color)
+  return if r < 0 || c < 0
+  return if r >= image.length || c >= image[0].length
+  return if image[r][c] != start_color
 
-result = oranges_rotting(grid)
-puts "Minimum Number of Minutes Required #{result}"
+  image[r][c] = new_color
+
+  dfs(image, r + 1, c, start_color, new_color)
+  dfs(image, r - 1, c, start_color, new_color)
+  dfs(image, r, c + 1, start_color, new_color)
+  dfs(image, r, c - 1, start_color, new_color)
+end
+
 ```
 ---
+
 
 
 
