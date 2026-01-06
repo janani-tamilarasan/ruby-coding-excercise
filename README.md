@@ -11,6 +11,8 @@
 - [Next Permutation](#next-permutation)
 - [Binary Search](#binary-search)
 - [Linked List](#linked-list)
+- [Backtracking](#back-tracking)
+  
 ----
 
 # Patterns
@@ -1308,6 +1310,41 @@ Left / Right View
 ### Slow and tortise algorithm
 
 ---
+
+## Backtracking
+
+### Backtracking(Choose → Explore → Unchoose)
+
+Try all choices → go deep → undo → try next choice.
+
+### when to use
+ “All possible…”
+ 
+✔ “Generate / list”
+
+✔ “Combinations / permutations”
+
+✔ “Subsets”
+
+✔ “Choose / place”
+
+✔ “Return all solutions”
+
+✔ Constraints + multiple paths
+
+### Algorithm
+```ruby
+backtrack(state):
+ ├─ If solution complete
+ │     → save answer
+ │     → return
+ ├─ For each choice
+ │     ├─ If valid choice
+ │     │     ├─ make choice
+ │     │     ├─ backtrack(next state)
+ │     │     └─ undo choice
+
+```
 
 ### 📝 NOTE (IMPROVEMENT)
 
