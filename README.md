@@ -11,7 +11,7 @@
 - [Next Permutation](#next-permutation)
 - [Binary Search](#binary-search)
 - [Linked List](#linked-list)
-- [Backtracking](#back-tracking)
+- [Backtracking](#backtracking)
   
 ----
 
