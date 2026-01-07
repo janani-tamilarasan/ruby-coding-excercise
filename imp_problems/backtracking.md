@@ -105,4 +105,60 @@ end
 
 ## Permutaions
 
+[https://leetcode.com/problems/permutations/submissions/1877188315/](https://leetcode.com/problems/permutations/submissions/1877188315/)
+
+### Algorithm
+```text
+function backtrack(path):
+
+    if path.size == nums.size:
+        result.add(copy of path)
+        return
+
+    for each num in nums:
+
+        if num already in path:
+            continue
+
+        path.add(num)        → CHOOSE
+        backtrack(path)     → EXPLORE
+        path.remove last    → UNCHOOSE
+
+
+```text
+
+### Code
+```ruby
+def permute(nums)
+  result = []
+  path = []
+  visited = Array.new(nums.length, false)
+
+  backtrack(result, path, nums, visited)
+
+  result
+end
+
+def backtrack(result, path, nums, visited)
+  if path.length == nums.length
+    result << path.dup
+    return
+  end
+
+  nums.length.times do |i|
+    next if visited[i]
+
+    visited[i] = true
+    path << nums[i]
+
+    backtrack(result, path, nums, visited)
+
+    path.pop
+    visited[i] = false
+  end
+end
+
+```
+---
+
 ```
