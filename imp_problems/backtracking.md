@@ -4,6 +4,7 @@
 - [Subsets](#subsets)
 - [Subsets with duplicates](#subsets-with-duplicates)
 - [Permutaions](#permutaions)
+- [Computation Sum](#computation-sum)
 
 ---
 
@@ -155,6 +156,59 @@ def backtrack(result, path, nums, visited)
 
     path.pop
     visited[i] = false
+  end
+end
+
+```
+---
+
+## Computation Sum
+Pick a number → reduce target → stay on same index → backtrack
+[https://leetcode.com/problems/combination-sum/](https://leetcode.com/problems/combination-sum/)
+
+```
+
+### Algorithm
+```text
+Sort
+↓
+backtrack(path, target, index)
+    ├─ if target == 0 → save path
+    ├─ for i = index → end
+    │     ├─ if candidates[i] > target → break
+    │     ├─ pick candidates[i]
+    │     ├─ recurse with same i
+    │     └─ pop (undo)
+
+
+```text
+
+### Code
+```ruby
+# @param {Integer[]} candidates
+# @param {Integer} target
+# @return {Integer[][]}
+def combination_sum(candidates, target)
+  candidates.sort!
+  result = []
+  backtrack(result, [], candidates, target, 0)
+  result
+end
+
+def backtrack(result, path, candidates, target, index)
+  # 🎯 base case
+  if target == 0
+    result << path.clone
+    return
+  end
+
+  (index...candidates.length).each do |i|
+    # ❌ pruning
+    break if candidates[i] > target
+
+    path << candidates[i]
+    backtrack(result, path, candidates, target - candidates[i], i)
+    path.pop
   end
 end
 
