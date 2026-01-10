@@ -1,6 +1,7 @@
 # 📌 CHEATSHEET - Table of Contents
 
 - [Two Pointers](#two-pointers)
+- [Top K Frequent Elements](#top-k-frequent-elements)
 - [Sliding Window](#sliding-window)
 - [Hashing](#hashing)
 - [Xor](#xor)
@@ -256,6 +257,52 @@ result
 ```
 
 ----
+
+## Top K Frequent Elements
+🔑 Frequency Count + Bucket Sort (O(n))
+
+✅ WHEN TO USE
+“Top K frequent…”
+
+“Most common elements”
+
+Frequency matters more than order
+
+Want O(n) (no sorting)
+
+```text
+Count frequency
+
+Put into buckets by frequency
+
+Traverse buckets backwards
+```
+
+
+```ruby
+def top_k_frequent(nums, k)
+  # 1️⃣ Frequency count
+  freq = Hash.new(0)
+  nums.each { |x| freq[x] += 1 }
+
+  # 2️⃣ Bucket: index = frequency
+  buckets = Array.new(nums.length + 1) { [] }
+  freq.each { |x, c| buckets[c] << x }
+
+  # 3️⃣ Collect from high → low
+  result = []
+  buckets.length.downto(0) do |i|
+    buckets[i].each do |x|
+      result << x
+      return result if result.length == k
+    end
+  end
+
+  result
+end
+
+```
+---
 
 ## Sliding Window 
 (Contiguous + Range → Sliding Window)
