@@ -6,6 +6,7 @@
 - [Hashing](#hashing)
 - [Xor](#xor)
 - [Prefix Sum](#prefix-sum)
+- [Prefix and Suffix](#prefix-suffix)
 - [Dutch National Flag Algorithm](#dutch-national-flag-algorithm)
 - [Boyer Moore Majority Vote Algorithm](#boyer–moore-majority-vote-algorithm)
 - [Kadanes Algorithm](#kadanes-algorithm)
@@ -731,6 +732,53 @@ If:
  - we found a get the count and use and store the prefis sum value with first_seend_index in hash
 length  +=  i - prefis sum[remaining_value].index
 ```
+----
+
+## Prefix and Suffix
+Left build → Right build → Combine
+### Complexity
+
+Time: O(n)
+Space: O(n) (prefix + suffix arrays)
+
+### Algorithm
+```text
+prefix = 1
+for i left → right:
+  res[i] = prefix
+  prefix *= nums[i]
+
+suffix = 1
+for i right → left:
+  res[i] *= suffix
+  suffix *= nums[i]
+
+```
+
+```ruby
+def product_except_self(nums)
+  n = nums.length
+  result = Array.new(n, 1)
+
+  # prefix
+  prefix = 1
+  (0...n).each do |i|
+    result[i] = prefix
+    prefix *= nums[i]
+  end
+
+  # suffix
+  suffix = 1
+  (n - 1).downto(0) do |i|
+    result[i] *= suffix
+    suffix *= nums[i]
+  end
+
+  result
+end
+```
+
+
 ----
 
 ## Dutch National Flag Algorithm
